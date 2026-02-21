@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description" content="Ítalo Bandeira - Engenheiro de Software Full-Stack">
+    <title>Ítalo Bandeira | Engenheiro de Software</title>
+
+    <!-- Security: Preconnect -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+
+    <!-- Typography -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Inter:wght@300;400;700&family=Space+Mono&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+
+    <!-- Tailwind CSS (CDN for simple static setup) -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "canvas": "#f2f1ed",
+                        "accent": "#000000",
+                        "guide": "#d1d1cf",
+                    },
+                    fontFamily: {
+                        "sans": ["Inter", "sans-serif"],
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "mono": ["Space Mono", "monospace"],
+                    },
+                },
+            },
+        }
+    </script>
+
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply bg-canvas text-black selection:bg-black selection:text-white;
+                background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+            }
+        }
+        
+        .grid-underlay {
+            background-image: 
+                linear-gradient(to right, #d1d1cf 1px, transparent 1px),
+                linear-gradient(to bottom, #d1d1cf 1px, transparent 1px);
+            background-size: 80px 80px;
+        }
+        
+        .tape {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(2px);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .project-card:hover .hover-outline {
+            @apply border-2 border-black;
+        }
+        
+        .project-card:hover img {
+            @apply grayscale-0 scale-105;
+        }
+        
+        .marquee-container {
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        .animate-marquee {
+            animation: marquee 25s linear infinite;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen relative font-sans antialiased">
+
+    <!-- Grid Background -->
+    <div class="fixed inset-0 grid-underlay pointer-events-none opacity-40 z-0"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 p-6 flex justify-between items-start pointer-events-none">
+        <div class="flex flex-col pointer-events-auto bg-canvas p-2 border border-black -rotate-1 shadow-sm">
+            <span class="font-display font-bold text-2xl tracking-tighter uppercase leading-none">Ítalo_Bandeira</span>
+            <span class="font-mono text-[10px] mt-1">AVAILABLE_FOR_WORK_2026</span>
+        </div>
+        <div class="flex gap-4 pointer-events-auto">
+            <a href="#contact"
+                class="bg-black text-white px-6 py-2 font-display font-bold uppercase hover:bg-white hover:text-black border border-black transition-colors focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 focus:ring-offset-canvas">
+                Contato
+            </a>
+        </div>
+    </nav>
+
+    <main class="relative z-10 pt-32 pb-20 overflow-x-hidden">
+
+        <!-- Hero Section -->
+        <section class="px-6 md:px-16 mb-40 relative flex justify-center">
+
+            <div class="max-w-6xl mx-auto relative flex flex-col items-center justify-center pt-8">
+                <div
+                    class="flex flex-col md:flex-row items-center md:items-start md:justify-center gap-12 md:gap-24 mb-12 relative">
+                    <div class="absolute top-[60%] right-4 md:right-[15%] tape w-24 h-6 z-20 hidden md:block">
+                    </div>
+
+                    <div class="flex flex-col text-center md:text-left pt-4 relative">
+                        <div class="mb-6 z-30 relative inline-block">
+                            <!-- Tape placed directly above the label -->
+                            <div class="absolute -top-6 -left-2 md:-left-14 tape w-32 h-8 -rotate-12 z-40"></div>
+
+                            <span
+                                class="font-mono text-xs uppercase bg-black text-white px-3 py-1.5 tracking-widest shadow-[4px_4px_0px_0px_rgba(209,209,207,1)] relative z-30 inline-block">
+                                Engenheiro_de_Software
+                            </span>
+                        </div>
+
+                        <h1
+                            class="font-display text-6xl md:text-[8rem] font-bold leading-[0.9] tracking-tighter uppercase mb-8 md:mb-0 relative z-30">
+                            Full <br class="hidden md:block" /> Stack <br />
+                            <span class="italic block mt-2 lg:text-[7rem] md:ml-12 text-outline-black">Craft.</span>
+                        </h1>
+                    </div>
+
+                    <!-- Profile Photo Aligned Right -->
+                    <div class="w-64 md:w-80 relative z-30 group project-card shrink-0">
+                        <div class="absolute -top-5 -left-4 tape w-20 h-8 -rotate-12 z-40"></div>
+                        <div class="absolute bottom-4 -right-6 tape w-32 h-10 rotate-6 z-40"></div>
+                        <div
+                            class="bg-white p-2 border border-black shadow-xl rotate-3 transition-transform duration-500 hover:rotate-0">
+                            <div class="relative overflow-hidden aspect-[3/4]">
+                                <!-- Using the relative path as requested by user -->
+                                <img alt="Ítalo Bandeira"
+                                    class="w-full h-full object-cover grayscale transition-all duration-700"
+                                    src="referencia/profile-photo.png"
+                                    onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop';" />
+                                <div
+                                    class="absolute inset-0 hover-outline pointer-events-none transition-all duration-300">
+                                </div>
+                                <div
+                                    class="absolute bottom-4 left-4 font-mono text-[10px] bg-black text-white px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    ÍTALO_BANDEIRA.JPG
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text Block Centered Below -->
+                <div class="max-w-3xl relative z-30 flex flex-col items-center">
+                    <div class="p-8 md:p-10 border border-black bg-white/60 backdrop-blur-md relative -rotate-1">
+                        <p class="font-sans text-base md:text-xl leading-relaxed font-medium text-center">
+                            Engenheiro de software com experiência em desenvolvimento full-stack, design social
+                            media, motion e IA. Trabalhando em projetos reais, sempre estudando e buscando ser um
+                            profissional melhor.
+                        </p>
+                    </div>
+
+                    <div
+                        class="flex flex-col md:flex-row items-center font-mono text-xs md:text-sm gap-4 mt-8 text-gray-700 bg-white/40 px-6 py-2 border border-black backdrop-blur-sm">
+                        <span>[ SYSTEM_STATUS: OPERATIONAL ]</span>
+                        <span class="hidden md:block">|</span>
+                        <span>STACK: JAVASCRIPT, HTML, TAILWIND</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Marquee / Skills -->
+        <div
+            class="w-full border-y border-black py-4 mb-40 bg-white/30 backdrop-blur-sm marquee-container overflow-hidden">
+            <div class="flex whitespace-nowrap animate-marquee">
+                <!-- First Set -->
+                <div
+                    class="flex gap-12 items-center px-6 font-display text-4xl font-bold uppercase tracking-widest italic opacity-20">
+                    <span>PHP | Laravel</span> <span class="material-symbols-outlined">close</span>
+                    <span>Ruby on Rails</span> <span class="material-symbols-outlined">close</span>
+                    <span>HTML 5 | CSS</span> <span class="material-symbols-outlined">close</span>
+                    <span>TypeScript</span> <span class="material-symbols-outlined">close</span>
+                    <span>MySQL | PostgreSQL</span> <span class="material-symbols-outlined">close</span>
+                    <span>Git</span> <span class="material-symbols-outlined">close</span>
+                </div>
+                <!-- Duplicate Set for infinite loop -->
+                <div
+                    class="flex gap-12 items-center px-6 font-display text-4xl font-bold uppercase tracking-widest italic opacity-20">
+                    <span>PHP | Laravel</span> <span class="material-symbols-outlined">close</span>
+                    <span>Ruby on Rails</span> <span class="material-symbols-outlined">close</span>
+                    <span>HTML 5 | CSS</span> <span class="material-symbols-outlined">close</span>
+                    <span>TypeScript</span> <span class="material-symbols-outlined">close</span>
+                    <span>MySQL | PostgreSQL</span> <span class="material-symbols-outlined">close</span>
+                    <span>Git</span> <span class="material-symbols-outlined">close</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projects Grid -->
+        <section id="projects" class="px-6 md:px-16 mb-40 relative max-w-[1400px] mx-auto">
+            <div class="mb-16">
+                <h2 class="font-display text-5xl md:text-7xl font-bold uppercase mb-4 leading-none">Projetos_</h2>
+                <p class="font-mono text-sm text-gray-600">Trabalhos recentes e experiências em produção.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-y-32">
+
+                <!-- Project 1 -->
+                <div class="md:col-span-7 relative z-20 group project-card">
+                    <div class="absolute -top-6 left-1/2 -translate-x-1/2 tape w-40 h-10 rotate-2 z-30"></div>
+                    <div
+                        class="bg-white p-2 border border-black shadow-xl transition-transform duration-500 hover:-translate-y-2">
+                        <div class="relative overflow-hidden aspect-[16/10]">
+                            <img alt="Project 1"
+                                class="w-full h-full object-cover grayscale transition-all duration-700"
+                                src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop" />
+                            <div class="absolute inset-0 hover-outline pointer-events-none transition-all duration-300">
+                            </div>
+                            <div
+                                class="absolute bottom-4 left-4 font-mono text-[10px] bg-black text-white px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                STACK: PHP / LARAVEL / MYSQL</div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex justify-between items-start">
+                        <div>
+                            <h3 class="text-4xl font-display font-bold uppercase leading-none">Sistema_ERP</h3>
+                            <p class="font-mono text-xs mt-2 text-gray-500">Plataforma robusta para gestão empresarial
+                                utilizando Laravel.</p>
+                        </div>
+                        <span
+                            class="material-symbols-outlined text-4xl group-hover:rotate-45 transition-transform">arrow_outward</span>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="md:col-span-6 md:col-start-8 -mt-16 md:-ml-24 relative z-30 group project-card">
+                    <div class="absolute -right-4 top-1/2 tape w-10 h-32 -rotate-12 z-30"></div>
+                    <div
+                        class="bg-white p-2 border border-black shadow-2xl transition-transform duration-500 hover:scale-[1.02]">
+                        <div class="relative overflow-hidden aspect-[4/5]">
+                            <img alt="Project 2"
+                                class="w-full h-full object-cover grayscale transition-all duration-700"
+                                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" />
+                            <div class="absolute inset-0 hover-outline pointer-events-none"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <h3 class="text-3xl font-display font-bold uppercase leading-none">SaaS_Analytics</h3>
+                        <p class="font-mono text-xs mt-2 text-gray-500">Dashboard de análise de dados com integrações
+                            IA.</p>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="md:col-span-5 md:col-start-2 -mt-20 relative z-10 group project-card">
+                    <div
+                        class="bg-white p-2 border border-black shadow-lg rotate-2 transition-transform duration-500 hover:rotate-0">
+                        <div class="relative overflow-hidden aspect-video">
+                            <img alt="Project 3"
+                                class="w-full h-full object-cover grayscale transition-all duration-700"
+                                src="https://images.unsplash.com/photo-1618761714954-0b8cd0026356?q=80&w=1200&auto=format&fit=crop" />
+                            <div class="absolute inset-0 hover-outline pointer-events-none"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 px-2">
+                        <h3 class="text-3xl font-display font-bold uppercase leading-none">Motion_App</h3>
+                        <p class="font-mono text-xs mt-2 text-gray-500">Aplicação frontend fluída com design focado em
+                            movimento.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Services & Philosophy -->
+        <section class="px-6 md:px-16 mb-60">
+            <div class="max-w-4xl mx-auto relative border border-black p-12 bg-white/40 backdrop-blur-md">
+                <div class="absolute -top-4 -right-4 tape w-32 h-8 rotate-6"></div>
+                <div class="absolute -bottom-4 -left-4 tape w-24 h-6 -rotate-12"></div>
+
+                <h2 class="font-display text-5xl md:text-7xl font-bold uppercase mb-8 leading-none">
+                    Engenharia_<br />Criativa.</h2>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="md:col-span-2">
+                        <p class="text-xl font-medium leading-relaxed mb-6">
+                            Desenvolvimento não é apenas código. É sobre criar soluções sólidas com <span
+                                class="italic underline decoration-2">experiências marcantes</span>. De arquiteturas
+                            backend até o polimento visual.
+                        </p>
+                        <p class="font-mono text-sm text-gray-600">
+                            Unindo engenharia de software tradicional (Relacional DBs, OOP, Design Patterns) com
+                            interfaces modernas, motion design e fluxos impulsionados por IA.
+                        </p>
+                    </div>
+
+                    <div class="flex flex-col justify-end space-y-4">
+                        <div class="border-t border-black pt-4">
+                            <span class="font-mono text-[10px] block uppercase">Serviços</span>
+                            <span class="font-display font-bold text-lg uppercase">Full-Stack Dev</span>
+                        </div>
+                        <div class="border-t border-black pt-4">
+                            <span class="font-display font-bold text-lg uppercase">Integração IA</span>
+                        </div>
+                        <div class="border-t border-black pt-4">
+                            <span class="font-display font-bold text-lg uppercase">Motion & UI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Terminal Contact Section -->
+        <section id="contact" class="px-6 md:px-16 relative">
+            <div class="max-w-3xl mx-auto">
+                <div
+                    class="bg-[#1a1a1a] rounded-none border-2 border-black shadow-[15px_15px_0px_0px_rgba(0,0,0,1)] overflow-hidden font-mono text-sm relative z-20">
+
+                    <div class="bg-[#333] px-4 py-2 flex items-center justify-between border-b-2 border-black">
+                        <div class="flex gap-2">
+                            <div class="w-3 h-3 rounded-full border border-black bg-[#ff5f56]"></div>
+                            <div class="w-3 h-3 rounded-full border border-black bg-[#ffbd2e]"></div>
+                            <div class="w-3 h-3 rounded-full border border-black bg-[#27c93f]"></div>
+                        </div>
+                        <div class="text-[10px] text-gray-400 uppercase tracking-widest font-bold">connect_terminal.sh
+                        </div>
+                    </div>
+
+                    <div class="p-8 text-green-400">
+                        <p class="mb-2"><span class="text-blue-400">italo@portfolio:</span><span
+                                class="text-pink-400">~</span>$ fetch_contact_info --target=all</p>
+
+                        <div class="my-6">
+                            <h3 class="text-2xl md:text-3xl font-bold text-white mb-2">> E-mail Comercial:</h3>
+                            <a href="mailto:contato@italobandeira.com"
+                                class="text-green-400 hover:text-white hover:underline transition-colors block text-xl">contato@italobandeira.com</a>
+                        </div>
+
+                        <p class="mb-2"><span class="text-blue-400">italo@portfolio:</span><span
+                                class="text-pink-400">~</span>$ ls social_networks/</p>
+                        <div class="flex flex-wrap gap-x-6 gap-y-2 text-white/80">
+                            <a class="hover:text-white hover:underline relative group focus:outline-none focus:ring-2 focus:ring-green-400"
+                                href="https://www.linkedin.com/in/italo-bandeira-035975106/" target="_blank"
+                                rel="noopener noreferrer">
+                                LINKEDIN.EXE
+                                <span
+                                    class="absolute -bottom-1 left-0 w-0 border-b-2 border-green-400 group-hover:w-full transition-all duration-300"></span>
+                            </a>
+                            <a class="hover:text-white hover:underline focus:outline-none focus:ring-2 focus:ring-green-400"
+                                href="#" target="_blank" rel="noopener noreferrer">GITHUB.SH</a>
+                            <a class="hover:text-white hover:underline focus:outline-none focus:ring-2 focus:ring-green-400"
+                                href="#" target="_blank" rel="noopener noreferrer">INSTAGRAM.JPG</a>
+                        </div>
+
+                        <div class="mt-8 pt-4 border-t border-white/10 text-white/30 text-[10px]">
+                            <p>CONNECTION_ESTABLISHED: <span id="current-date"></span></p>
+                            <p class="animate-pulse">_</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Decorative guide frame -->
+                <div class="absolute -bottom-8 -right-4 w-48 h-48 border border-black -z-10 bg-guide opacity-20"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="p-8 border-t border-black bg-white/20 mt-40 backdrop-blur-sm">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="font-mono text-[10px] uppercase">
+                © 2026_ITALO_BANDEIRA // ENGENHEIRO_DE_SOFTWARE // DESIGNER // MOTION // IA
+            </div>
+            <div class="flex gap-8 font-display font-bold uppercase text-xs tracking-tighter">
+                <a class="hover:line-through focus:outline-none focus:ring-2 focus:ring-black" href="#">Volte ao
+                    Topo</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Set dynamic date in terminal
+        const dateElement = document.getElementById('current-date');
+        if (dateElement) {
+            const now = new Date();
+            dateElement.textContent = now.toISOString().split('T')[0] + '_' + now.toTimeString().split(' ')[0];
+        }
+    </script>
+</body>
+
+</html>

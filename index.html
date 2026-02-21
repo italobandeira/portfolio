@@ -80,7 +80,16 @@
         }
         
         .animate-marquee {
-            animation: marquee 25s linear infinite;
+            animation: marquee 35s linear infinite;
+        }
+
+        /* Lightbox modal styles */
+        #lightbox {
+            transition: opacity 0.3s ease;
+        }
+        #lightbox.open {
+            display: flex !important;
+            opacity: 1;
         }
         
         /* Smooth scrolling */
@@ -148,7 +157,7 @@
                                 <!-- Using the relative path as requested by user -->
                                 <img alt="Ítalo Bandeira"
                                     class="w-full h-full object-cover grayscale transition-all duration-700"
-                                    src="referencia/profile-photo.png"
+                                    src="projetos/profile-photo.png"
                                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop';" />
                                 <div
                                     class="absolute inset-0 hover-outline pointer-events-none transition-all duration-300">
@@ -210,80 +219,174 @@
             </div>
         </div>
 
-        <!-- Projects Grid -->
-        <section id="projects" class="px-6 md:px-16 mb-40 relative max-w-[1400px] mx-auto">
-            <div class="mb-16">
+        <!-- Projects Section -->
+        <section id="projects" class="mb-40 relative container mx-auto">
+            <div class="mb-16 max-w-[1400px] mx-auto">
                 <h2 class="font-display text-5xl md:text-7xl font-bold uppercase mb-4 leading-none">Projetos_</h2>
                 <p class="font-mono text-sm text-gray-600">Trabalhos recentes e experiências em produção.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-y-32">
-
-                <!-- Project 1 -->
-                <div class="md:col-span-7 relative z-20 group project-card">
-                    <div class="absolute -top-6 left-1/2 -translate-x-1/2 tape w-40 h-10 rotate-2 z-30"></div>
-                    <div
-                        class="bg-white p-2 border border-black shadow-xl transition-transform duration-500 hover:-translate-y-2">
-                        <div class="relative overflow-hidden aspect-[16/10]">
-                            <img alt="Project 1"
-                                class="w-full h-full object-cover grayscale transition-all duration-700"
-                                src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop" />
-                            <div class="absolute inset-0 hover-outline pointer-events-none transition-all duration-300">
+            <!-- Full-Stack Carousel -->
+            <div class="mb-24">
+                <div class="px-6 md:px-16 mb-6">
+                    <h3
+                        class="font-mono text-xs uppercase bg-black text-white px-3 py-1.5 tracking-widest inline-block shadow-[4px_4px_0px_0px_rgba(209,209,207,1)] relative z-30">
+                        Desenvolvimento_Full_Stack
+                    </h3>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-8 px-6 md:px-16">
+                    <!-- Project 1: Energia Enxuta -->
+                    <div class="group relative z-20">
+                        <div class="absolute -top-4 -left-4 tape w-24 h-8 rotate-6 z-30"></div>
+                        <a href="https://energiaenxuta.com/" target="_blank" rel="noopener noreferrer"
+                            class="block bg-white p-2 border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all duration-300">
+                            <div class="relative overflow-hidden aspect-[16/10] border-b-2 border-black">
+                                <img alt="Energia Enxuta"
+                                    class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                                    src="projetos/app2.png" />
+                                <div
+                                    class="absolute bottom-4 left-4 font-mono text-[10px] bg-black text-white px-2 py-1">
+                                    SAAS / WEB</div>
                             </div>
-                            <div
-                                class="absolute bottom-4 left-4 font-mono text-[10px] bg-black text-white px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                                STACK: PHP / LARAVEL / MYSQL</div>
-                        </div>
+                            <div class="p-6">
+                                <h4
+                                    class="text-3xl font-display font-bold uppercase leading-none mb-2 group-hover:underline">
+                                    Energia_Enxuta</h4>
+                                <p class="font-mono text-xs text-gray-600 mb-6">Plataforma focada em economia e gestão
+                                    de eficiência energética.</p>
+                                <div class="flex items-center gap-2 font-mono text-xs font-bold uppercase">
+                                    <span>Acessar Projeto</span>
+                                    <span
+                                        class="material-symbols-outlined text-lg group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">arrow_outward</span>
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                    <div class="mt-4 flex justify-between items-start">
-                        <div>
-                            <h3 class="text-4xl font-display font-bold uppercase leading-none">Sistema_ERP</h3>
-                            <p class="font-mono text-xs mt-2 text-gray-500">Plataforma robusta para gestão empresarial
-                                utilizando Laravel.</p>
-                        </div>
-                        <span
-                            class="material-symbols-outlined text-4xl group-hover:rotate-45 transition-transform">arrow_outward</span>
+
+                    <!-- Project 2: Betterday -->
+                    <div class="group relative z-20">
+                        <div class="absolute -bottom-4 right-8 tape w-32 h-8 -rotate-12 z-30 hidden md:block"></div>
+                        <a href="https://play.google.com/store/apps/details?id=com.iflag.betterday_habit_tracker&pcampaignid=web_share"
+                            target="_blank" rel="noopener noreferrer"
+                            class="block bg-white p-2 border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all duration-300">
+                            <div class="relative overflow-hidden aspect-[16/10] border-b-2 border-black">
+                                <img alt="Betterday"
+                                    class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                                    src="projetos/app1.png" />
+                                <div
+                                    class="absolute bottom-4 left-4 font-mono text-[10px] bg-black text-white px-2 py-1">
+                                    MOBILE / ANDROID</div>
+                            </div>
+                            <div class="p-6">
+                                <h4
+                                    class="text-3xl font-display font-bold uppercase leading-none mb-2 group-hover:underline">
+                                    Betterday</h4>
+                                <p class="font-mono text-xs text-gray-600 mb-6">Aplicativo mobile de rastreamento de
+                                    rotinas, hábitos e produtividade.</p>
+                                <div class="flex items-center gap-2 font-mono text-xs font-bold uppercase">
+                                    <span>Download App</span>
+                                    <span
+                                        class="material-symbols-outlined text-lg group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">arrow_outward</span>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
-
-                <!-- Project 2 -->
-                <div class="md:col-span-6 md:col-start-8 -mt-16 md:-ml-24 relative z-30 group project-card">
-                    <div class="absolute -right-4 top-1/2 tape w-10 h-32 -rotate-12 z-30"></div>
-                    <div
-                        class="bg-white p-2 border border-black shadow-2xl transition-transform duration-500 hover:scale-[1.02]">
-                        <div class="relative overflow-hidden aspect-[4/5]">
-                            <img alt="Project 2"
-                                class="w-full h-full object-cover grayscale transition-all duration-700"
-                                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" />
-                            <div class="absolute inset-0 hover-outline pointer-events-none"></div>
-                        </div>
-                    </div>
-                    <div class="mt-4">
-                        <h3 class="text-3xl font-display font-bold uppercase leading-none">SaaS_Analytics</h3>
-                        <p class="font-mono text-xs mt-2 text-gray-500">Dashboard de análise de dados com integrações
-                            IA.</p>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="md:col-span-5 md:col-start-2 -mt-20 relative z-10 group project-card">
-                    <div
-                        class="bg-white p-2 border border-black shadow-lg rotate-2 transition-transform duration-500 hover:rotate-0">
-                        <div class="relative overflow-hidden aspect-video">
-                            <img alt="Project 3"
-                                class="w-full h-full object-cover grayscale transition-all duration-700"
-                                src="https://images.unsplash.com/photo-1618761714954-0b8cd0026356?q=80&w=1200&auto=format&fit=crop" />
-                            <div class="absolute inset-0 hover-outline pointer-events-none"></div>
-                        </div>
-                    </div>
-                    <div class="mt-4 px-2">
-                        <h3 class="text-3xl font-display font-bold uppercase leading-none">Motion_App</h3>
-                        <p class="font-mono text-xs mt-2 text-gray-500">Aplicação frontend fluída com design focado em
-                            movimento.</p>
-                    </div>
-                </div>
-
             </div>
+
+            <!-- Design Carousel -->
+            <div class="mb-20">
+                <div class="px-6 md:px-16 mb-6">
+                    <div class="absolute right-4 md:right-[15%] tape w-32 h-8 rotate-6 z-20"></div>
+                    <h3
+                        class="font-mono text-xs uppercase bg-black text-white px-3 py-1.5 tracking-widest inline-block shadow-[4px_4px_0px_0px_rgba(209,209,207,1)] relative z-30">
+                        Design_&_Motion
+                    </h3>
+                </div>
+                <div
+                    class="w-full py-8 border-y border-black bg-white/30 backdrop-blur-sm marquee-container overflow-hidden group">
+                    <!-- Reduced animation speed via inline style given size -->
+                    <div class="flex whitespace-nowrap animate-marquee group-hover:[animation-play-state:paused] w-max"
+                        style="animation-duration: 90s;">
+
+                        <!-- Design Set 1 -->
+                        <div class="flex gap-8 items-center px-4">
+                            <img src="projetos/1.jpg" alt="Design" onclick="openLightbox(this.src)"
+                                class="h-[300px] w-auto object-cover border-2 border-black grayscale hover:grayscale-0 transition-all duration-500 shadow-xl cursor-crosshair hover:-translate-y-2">
+                            <img src="projetos/2.jpg" alt="Design" onclick="openLightbox(this.src)"
+                                class="h-[300px] w-auto object-cover border-2 border-black grayscale hover:grayscale-0 transition-all duration-500 shadow-xl cursor-crosshair hover:-translate-y-2">
+                            <img src="projetos/3.jpg" alt="Design" onclick="openLightbox(this.src)"
+                                class="h-[300px] w-auto object-cover border-2 border-black grayscale hover:grayscale-0 transition-all duration-500 shadow-xl cursor-crosshair hover:-translate-y-2">
+                            <img src="projetos/4.jpg" alt="Design" onclick="openLightbox(this.src)"
+                                class="h-[300px] w-auto object-cover border-2 border-black grayscale hover:grayscale-0 transition-all duration-500 shadow-xl cursor-crosshair hover:-translate-y-2">
+
+                            <img src="projetos/carros1.jpg" alt="Design" onclick="openLightbox(this.src)"
+                                class="h-[300px] w-auto object-cover border-2 border-black grayscale hover:grayscale-0 transition-all duration-500 shadow-xl cursor-crosshair hover:-translate-y-2">
+                            <img src="projetos/carros2.jpg" alt="Design" onclick="openLightbox(this.src)"
+                                class="h-[300px] w-auto object-cover border-2 border-black grayscale hover:grayscale-0 transition-all duration-500 shadow-xl cursor-crosshair hover:-translate-y-2">
+                            <img src="projetos/carros3.jpg" alt="Design" onclick="openLightbox(this.src)"
+                                class="h-[300px] w-auto object-cover border-2 border-black grayscale hover:grayscale-0 transition-all duration-500 shadow-xl cursor-crosshair hover:-translate-y-2">
+                            <img src="projetos/carros4.jpg" alt="Design" onclick="openLightbox(this.src)"
+                                class="h-[300px] w-auto object-cover border-2 border-black grayscale hover:grayscale-0 transition-all duration-500 shadow-xl cursor-crosshair hover:-translate-y-2">
+
+                            <img src="projetos/design1.jpg" alt="Design" onclick="openLightbox(this.src)"
+                                class="h-[300px] w-auto object-cover border-2 border-black grayscale hover:grayscale-0 transition-all duration-500 shadow-xl cursor-crosshair hover:-translate-y-2">
+                            <img src="projetos/design2.jpg" alt="Design" onclick="openLightbox(this.src)"
+                                class="h-[300px] w-auto object-cover border-2 border-black grayscale hover:grayscale-0 transition-all duration-500 shadow-xl cursor-crosshair hover:-translate-y-2">
+                            <img src="projetos/design3.jpg" alt="Design" onclick="openLightbox(this.src)"
+                                class="h-[300px] w-auto object-cover border-2 border-black grayscale hover:grayscale-0 transition-all duration-500 shadow-xl cursor-crosshair hover:-translate-y-2">
+                            <img src="projetos/design4.jpg" alt="Design" onclick="openLightbox(this.src)"
+                                class="h-[300px] w-auto object-cover border-2 border-black grayscale hover:grayscale-0 transition-all duration-500 shadow-xl cursor-crosshair hover:-translate-y-2">
+
+                            <img src="projetos/tenis1.jpg" alt="Design" onclick="openLightbox(this.src)"
+                                class="h-[300px] w-auto object-cover border-2 border-black grayscale hover:grayscale-0 transition-all duration-500 shadow-xl cursor-crosshair hover:-translate-y-2">
+                            <img src="projetos/tenis2.png" alt="Design" onclick="openLightbox(this.src)"
+                                class="h-[300px] w-auto object-cover border-2 border-black grayscale hover:grayscale-0 transition-all duration-500 shadow-xl cursor-crosshair hover:-translate-y-2">
+                            <img src="projetos/z1.jpg" alt="Design" onclick="openLightbox(this.src)"
+                                class="h-[300px] w-auto object-cover border-2 border-black grayscale hover:grayscale-0 transition-all duration-500 shadow-xl cursor-crosshair hover:-translate-y-2">
+                        </div>
+
+                        <!-- Design Set 2 -->
+                        <div class="flex gap-8 items-center px-4">
+                            <img src="projetos/1.jpg" alt="Design" onclick="openLightbox(this.src)"
+                                class="h-[300px] w-auto object-cover border-2 border-black grayscale hover:grayscale-0 transition-all duration-500 shadow-xl cursor-crosshair hover:-translate-y-2">
+                            <img src="projetos/2.jpg" alt="Design" onclick="openLightbox(this.src)"
+                                class="h-[300px] w-auto object-cover border-2 border-black grayscale hover:grayscale-0 transition-all duration-500 shadow-xl cursor-crosshair hover:-translate-y-2">
+                            <img src="projetos/3.jpg" alt="Design" onclick="openLightbox(this.src)"
+                                class="h-[300px] w-auto object-cover border-2 border-black grayscale hover:grayscale-0 transition-all duration-500 shadow-xl cursor-crosshair hover:-translate-y-2">
+                            <img src="projetos/4.jpg" alt="Design" onclick="openLightbox(this.src)"
+                                class="h-[300px] w-auto object-cover border-2 border-black grayscale hover:grayscale-0 transition-all duration-500 shadow-xl cursor-crosshair hover:-translate-y-2">
+
+                            <img src="projetos/carros1.jpg" alt="Design" onclick="openLightbox(this.src)"
+                                class="h-[300px] w-auto object-cover border-2 border-black grayscale hover:grayscale-0 transition-all duration-500 shadow-xl cursor-crosshair hover:-translate-y-2">
+                            <img src="projetos/carros2.jpg" alt="Design" onclick="openLightbox(this.src)"
+                                class="h-[300px] w-auto object-cover border-2 border-black grayscale hover:grayscale-0 transition-all duration-500 shadow-xl cursor-crosshair hover:-translate-y-2">
+                            <img src="projetos/carros3.jpg" alt="Design" onclick="openLightbox(this.src)"
+                                class="h-[300px] w-auto object-cover border-2 border-black grayscale hover:grayscale-0 transition-all duration-500 shadow-xl cursor-crosshair hover:-translate-y-2">
+                            <img src="projetos/carros4.jpg" alt="Design" onclick="openLightbox(this.src)"
+                                class="h-[300px] w-auto object-cover border-2 border-black grayscale hover:grayscale-0 transition-all duration-500 shadow-xl cursor-crosshair hover:-translate-y-2">
+
+                            <img src="projetos/design1.jpg" alt="Design" onclick="openLightbox(this.src)"
+                                class="h-[300px] w-auto object-cover border-2 border-black grayscale hover:grayscale-0 transition-all duration-500 shadow-xl cursor-crosshair hover:-translate-y-2">
+                            <img src="projetos/design2.jpg" alt="Design" onclick="openLightbox(this.src)"
+                                class="h-[300px] w-auto object-cover border-2 border-black grayscale hover:grayscale-0 transition-all duration-500 shadow-xl cursor-crosshair hover:-translate-y-2">
+                            <img src="projetos/design3.jpg" alt="Design" onclick="openLightbox(this.src)"
+                                class="h-[300px] w-auto object-cover border-2 border-black grayscale hover:grayscale-0 transition-all duration-500 shadow-xl cursor-crosshair hover:-translate-y-2">
+                            <img src="projetos/design4.jpg" alt="Design" onclick="openLightbox(this.src)"
+                                class="h-[300px] w-auto object-cover border-2 border-black grayscale hover:grayscale-0 transition-all duration-500 shadow-xl cursor-crosshair hover:-translate-y-2">
+
+                            <img src="projetos/tenis1.jpg" alt="Design" onclick="openLightbox(this.src)"
+                                class="h-[300px] w-auto object-cover border-2 border-black grayscale hover:grayscale-0 transition-all duration-500 shadow-xl cursor-crosshair hover:-translate-y-2">
+                            <img src="projetos/tenis2.png" alt="Design" onclick="openLightbox(this.src)"
+                                class="h-[300px] w-auto object-cover border-2 border-black grayscale hover:grayscale-0 transition-all duration-500 shadow-xl cursor-crosshair hover:-translate-y-2">
+                            <img src="projetos/z1.jpg" alt="Design" onclick="openLightbox(this.src)"
+                                class="h-[300px] w-auto object-cover border-2 border-black grayscale hover:grayscale-0 transition-all duration-500 shadow-xl cursor-crosshair hover:-translate-y-2">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
         </section>
 
         <!-- Services & Philosophy -->
@@ -314,10 +417,10 @@
                             <span class="font-display font-bold text-lg uppercase">Full-Stack Dev</span>
                         </div>
                         <div class="border-t border-black pt-4">
-                            <span class="font-display font-bold text-lg uppercase">Integração IA</span>
+                            <span class="font-display font-bold text-lg uppercase">Design Social Media</span>
                         </div>
                         <div class="border-t border-black pt-4">
-                            <span class="font-display font-bold text-lg uppercase">Motion & UI</span>
+                            <span class="font-display font-bold text-lg uppercase">Motion</span>
                         </div>
                     </div>
                 </div>
@@ -346,24 +449,51 @@
 
                         <div class="my-6">
                             <h3 class="text-2xl md:text-3xl font-bold text-white mb-2">> E-mail Comercial:</h3>
-                            <a href="mailto:contato@italobandeira.com"
-                                class="text-green-400 hover:text-white hover:underline transition-colors block text-xl">contato@italobandeira.com</a>
+                            <a href="mailto:iflagdev@gmail.com"
+                                class="text-green-400 hover:text-white hover:underline transition-colors block text-xl">iflagdev@gmail.com</a>
                         </div>
 
                         <p class="mb-2"><span class="text-blue-400">italo@portfolio:</span><span
+                                class="text-pink-400">~</span>$ ls my_projects/</p>
+                        <div class="flex flex-wrap gap-x-6 gap-y-2 text-white/80">
+                            <a class="hover:text-white relative group focus:outline-none focus:ring-2 focus:ring-green-400"
+                                href="https://energiaenxuta.com/" target="_blank" rel="noopener noreferrer">
+                                ENERGIA_ENXUTA.COM
+                                <span
+                                    class="absolute -bottom-1 left-0 w-0 border-b-2 border-green-400 group-hover:w-full transition-all duration-300"></span>
+                            </a>
+                            <a class="hover:text-white relative group focus:outline-none focus:ring-2 focus:ring-green-400"
+                                href="https://play.google.com/store/apps/details?id=com.iflag.betterday_habit_tracker&pcampaignid=web_share"
+                                target="_blank" rel="noopener noreferrer">
+                                BETTERDAY.APK
+                                <span
+                                    class="absolute -bottom-1 left-0 w-0 border-b-2 border-green-400 group-hover:w-full transition-all duration-300"></span>
+                            </a>
+                        </div>
+
+                        <p class="mt-4 mb-2"><span class="text-blue-400">italo@portfolio:</span><span
                                 class="text-pink-400">~</span>$ ls social_networks/</p>
                         <div class="flex flex-wrap gap-x-6 gap-y-2 text-white/80">
-                            <a class="hover:text-white hover:underline relative group focus:outline-none focus:ring-2 focus:ring-green-400"
+                            <a class="hover:text-white relative group focus:outline-none focus:ring-2 focus:ring-green-400"
                                 href="https://www.linkedin.com/in/italo-bandeira-035975106/" target="_blank"
                                 rel="noopener noreferrer">
                                 LINKEDIN.EXE
                                 <span
                                     class="absolute -bottom-1 left-0 w-0 border-b-2 border-green-400 group-hover:w-full transition-all duration-300"></span>
                             </a>
-                            <a class="hover:text-white hover:underline focus:outline-none focus:ring-2 focus:ring-green-400"
-                                href="#" target="_blank" rel="noopener noreferrer">GITHUB.SH</a>
-                            <a class="hover:text-white hover:underline focus:outline-none focus:ring-2 focus:ring-green-400"
-                                href="#" target="_blank" rel="noopener noreferrer">INSTAGRAM.JPG</a>
+                            <a class="hover:text-white relative group focus:outline-none focus:ring-2 focus:ring-green-400"
+                                href="https://github.com/italobandeira" target="_blank" rel="noopener noreferrer">
+                                GITHUB.SH
+                                <span
+                                    class="absolute -bottom-1 left-0 w-0 border-b-2 border-green-400 group-hover:w-full transition-all duration-300"></span>
+                            </a>
+                            <a class="hover:text-white relative group focus:outline-none focus:ring-2 focus:ring-green-400"
+                                href="https://www.instagram.com/italobandeira_motion/" target="_blank"
+                                rel="noopener noreferrer">
+                                INSTAGRAM.JPG
+                                <span
+                                    class="absolute -bottom-1 left-0 w-0 border-b-2 border-green-400 group-hover:w-full transition-all duration-300"></span>
+                            </a>
                         </div>
 
                         <div class="mt-8 pt-4 border-t border-white/10 text-white/30 text-[10px]">
@@ -393,6 +523,20 @@
         </div>
     </footer>
 
+    <!-- Lightbox Modal -->
+    <div id="lightbox"
+        class="fixed inset-0 bg-black/90 z-[100] hidden items-center justify-center p-4 backdrop-blur-sm cursor-zoom-out"
+        onclick="closeLightbox()">
+        <button
+            class="absolute top-6 right-6 text-white bg-black/50 border border-white hover:bg-white hover:text-black transition p-2 focus:outline-none"
+            onclick="closeLightbox()">
+            <span class="material-symbols-outlined uppercase font-mono text-xs block px-1">Fechar [X]</span>
+        </button>
+        <img id="lightbox-img" src="" alt="Ampliado"
+            class="max-w-full max-h-full object-contain border-4 border-white shadow-[15px_15px_0px_0px_rgba(255,255,255,0.2)]"
+            onclick="event.stopPropagation()">
+    </div>
+
     <!-- Scripts -->
     <script>
         // Set dynamic date in terminal
@@ -401,6 +545,37 @@
             const now = new Date();
             dateElement.textContent = now.toISOString().split('T')[0] + '_' + now.toTimeString().split(' ')[0];
         }
+
+        // Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        function openLightbox(src) {
+            lightboxImg.src = src;
+            lightbox.classList.remove('hidden');
+            lightbox.classList.add('flex');
+            // Slight delay to allow display flex to apply before transitioning opacity
+            setTimeout(() => {
+                lightbox.classList.add('open');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('open');
+            setTimeout(() => {
+                lightbox.classList.add('hidden');
+                lightbox.classList.remove('flex');
+            }, 300);
+            document.body.style.overflow = 'auto';
+        }
+
+        // Ensure Escape key also closes the lightbox
+        document.addEventListener('keydown', function (event) {
+            if (event.key === "Escape" && lightbox.classList.contains('open')) {
+                closeLightbox();
+            }
+        });
     </script>
 </body>
 

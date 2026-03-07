@@ -357,13 +357,20 @@
                         Desenvolvimento_Full_Stack
                     </h3>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-8 px-6 md:px-16">
+                <div class="flex gap-8 mt-8 px-6 md:px-16 overflow-x-auto pb-12 snap-x snap-mandatory scroll-smooth"
+                    style="scrollbar-width: none; -ms-overflow-style: none;">
+                    <style>
+                        .flex.overflow-x-auto::-webkit-scrollbar {
+                            display: none;
+                        }
+                    </style>
                     <!-- Project 1: Energia Enxuta -->
-                    <div class="group relative z-20 reveal-on-scroll">
+                    <div
+                        class="group relative z-20 reveal-on-scroll shrink-0 w-[85vw] sm:w-[60vw] md:w-[45vw] lg:w-[400px] snap-center">
                         <div class="absolute -top-4 -left-4 tape w-24 h-8 rotate-6 z-30"></div>
                         <a href="https://energiaenxuta.com/" target="_blank" rel="noopener noreferrer"
-                            class="block bg-white p-2 border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all duration-300">
-                            <div class="relative overflow-hidden aspect-[16/10] border-b-2 border-black">
+                            class="flex flex-col h-full bg-white p-2 border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all duration-300">
+                            <div class="relative overflow-hidden aspect-[16/10] border-b-2 border-black shrink-0">
                                 <img alt="Energia Enxuta"
                                     class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
                                     src="projetos/app2.png" />
@@ -371,14 +378,14 @@
                                     class="absolute bottom-4 left-4 font-mono text-[10px] bg-black text-white px-2 py-1">
                                     SAAS / WEB</div>
                             </div>
-                            <div class="p-6">
+                            <div class="p-6 flex flex-col flex-grow">
                                 <h4
                                     class="text-3xl font-display font-bold uppercase leading-none mb-2 group-hover:underline">
                                     Energia_Enxuta</h4>
                                 <p data-i18n="proj-energia" class="font-mono text-xs text-gray-600 mb-6">Plataforma
                                     focada em economia e gestão
                                     de eficiência energética.</p>
-                                <div class="flex items-center gap-2 font-mono text-xs font-bold uppercase">
+                                <div class="flex items-center gap-2 font-mono text-xs font-bold uppercase mt-auto">
                                     <span data-i18n="proj-access">Acessar Projeto</span>
                                     <span
                                         class="material-symbols-outlined text-lg group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">arrow_outward</span>
@@ -388,12 +395,13 @@
                     </div>
 
                     <!-- Project 2: Betterday -->
-                    <div class="group relative z-20 reveal-on-scroll delay-200">
+                    <div
+                        class="group relative z-20 reveal-on-scroll delay-200 shrink-0 w-[85vw] sm:w-[60vw] md:w-[45vw] lg:w-[400px] snap-center">
                         <div class="absolute -bottom-4 right-8 tape w-32 h-8 -rotate-12 z-30 hidden md:block"></div>
                         <a href="https://play.google.com/store/apps/details?id=com.iflag.betterday_habit_tracker&pcampaignid=web_share"
                             target="_blank" rel="noopener noreferrer"
-                            class="block bg-white p-2 border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all duration-300">
-                            <div class="relative overflow-hidden aspect-[16/10] border-b-2 border-black">
+                            class="flex flex-col h-full bg-white p-2 border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all duration-300">
+                            <div class="relative overflow-hidden aspect-[16/10] border-b-2 border-black shrink-0">
                                 <img alt="Betterday"
                                     class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
                                     src="projetos/app1.png" />
@@ -401,15 +409,45 @@
                                     class="absolute bottom-4 left-4 font-mono text-[10px] bg-black text-white px-2 py-1">
                                     MOBILE / ANDROID</div>
                             </div>
-                            <div class="p-6">
+                            <div class="p-6 flex flex-col flex-grow">
                                 <h4
                                     class="text-3xl font-display font-bold uppercase leading-none mb-2 group-hover:underline">
                                     Betterday</h4>
                                 <p data-i18n="proj-bd" class="font-mono text-xs text-gray-600 mb-6">Aplicativo mobile de
                                     rastreamento de
                                     rotinas, hábitos e produtividade.</p>
-                                <div class="flex items-center gap-2 font-mono text-xs font-bold uppercase">
+                                <div class="flex items-center gap-2 font-mono text-xs font-bold uppercase mt-auto">
                                     <span data-i18n="proj-down">Download App</span>
+                                    <span
+                                        class="material-symbols-outlined text-lg group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">arrow_outward</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Project 3: Advocacia Imobiliária -->
+                    <div
+                        class="group relative z-20 reveal-on-scroll delay-300 shrink-0 w-[85vw] sm:w-[60vw] md:w-[45vw] lg:w-[400px] snap-center">
+                        <div class="absolute -top-4 right-8 tape w-28 h-8 rotate-[15deg] z-30 hidden md:block"></div>
+                        <a href="https://italobandeira.github.io/landingpage-advocacia/" target="_blank"
+                            rel="noopener noreferrer"
+                            class="flex flex-col h-full bg-white p-2 border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all duration-300">
+                            <div class="relative overflow-hidden aspect-[16/10] border-b-2 border-black shrink-0">
+                                <img alt="Hido Alves Advocacia"
+                                    class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 object-top"
+                                    src="projetos/advocacia.png" />
+                                <div
+                                    class="absolute bottom-4 left-4 font-mono text-[10px] bg-black text-white px-2 py-1">
+                                    LANDING PAGE</div>
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h4
+                                    class="text-3xl font-display font-bold uppercase leading-none mb-2 group-hover:underline">
+                                    Hido_Alves</h4>
+                                <p data-i18n="proj-adv" class="font-mono text-xs text-gray-600 mb-6">Landing page de
+                                    alta conversão para escritório de advocacia imobiliária focado em distratos.</p>
+                                <div class="flex items-center gap-2 font-mono text-xs font-bold uppercase mt-auto">
+                                    <span data-i18n="proj-access">Acessar Projeto</span>
                                     <span
                                         class="material-symbols-outlined text-lg group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">arrow_outward</span>
                                 </div>
@@ -804,6 +842,7 @@
                 "proj-access": "Acessar Projeto",
                 "proj-bd": "Aplicativo mobile de rastreamento de rotinas, hábitos e produtividade.",
                 "proj-down": "Download App",
+                "proj-adv": "Landing page de alta conversão para escritório de advocacia imobiliária focado em distratos.",
                 "proj-design": "Design_&_Motion",
                 "serv-title": "Engenharia_<br />Criativa.",
                 "serv-p1": "Desenvolvimento não é apenas código. É sobre criar soluções sólidas com <span class=\"italic underline decoration-2\">experiências marcantes</span>. De arquiteturas backend até o polimento visual.",
@@ -825,6 +864,7 @@
                 "proj-access": "View Project",
                 "proj-bd": "Mobile application for tracking routines, habits, and productivity.",
                 "proj-down": "Download App",
+                "proj-adv": "High-conversion landing page for real estate law firm focused on contract rescission.",
                 "proj-design": "Design_&_Motion",
                 "serv-title": "Creative_<br />Engineering.",
                 "serv-p1": "Development isn't just code. It's about creating solid solutions with <span class=\"italic underline decoration-2\">striking experiences</span>. From backend architectures to visual polish.",

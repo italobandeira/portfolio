@@ -20,6 +20,12 @@
 
     <!-- Tailwind CSS (CDN for simple static setup) -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <!-- Animating Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -56,17 +62,38 @@
         }
         
         .tape {
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(2px);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        /* Glassmorphism Classes */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
         }
         
+        .project-card {
+            perspective: 1000px; /* For 3D transforms */
+            transform-style: preserve-3d;
+        }
+
         .project-card:hover .hover-outline {
             @apply border-2 border-black;
         }
         
+        .project-card img {
+            transform: translateZ(20px);
+            transition: transform 0.3s ease-out, filter 0.7s;
+        }
         .project-card:hover img {
-            @apply grayscale-0 scale-105;
+            @apply grayscale-0;
+            transform: scale(1.05) translateZ(40px);
         }
         
         .marquee-container {
@@ -99,50 +126,14 @@
         
         /* --- JUICE ALERTS (AESTHETICS) --- */
         
+        /* Removing CSS native animations inside utility class as we are switching to AnimeJS/GSAP */
         @layer utilities {
             .opacity-0-initial { opacity: 0; }
-            
-            .animate-fade-in-up {
-                animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            }
-            
-            .delay-100 { animation-delay: 100ms; }
-            .delay-200 { animation-delay: 200ms; }
-            .delay-300 { animation-delay: 300ms; }
-            .delay-400 { animation-delay: 400ms; }
-            .delay-500 { animation-delay: 500ms; }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(3deg); }
-            50% { transform: translateY(-10px) rotate(2deg); }
-            100% { transform: translateY(0px) rotate(3deg); }
-        }
-        
-        .animate-float {
-            animation: float 6s ease-in-out infinite;
         }
 
         .reveal-on-scroll {
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        
-        .reveal-on-scroll.is-visible {
-            opacity: 1;
-            transform: translateY(0);
+            visibility: hidden;
         }
 
         /* Custom Cursor */
@@ -209,7 +200,8 @@
     <div id="custom-cursor" class="hidden md:block"></div>
 
     <!-- Grid Background -->
-    <div class="fixed inset-0 grid-underlay pointer-events-none opacity-40 z-0"></div>
+    <div id="grid-bg" class="fixed inset-0 grid-underlay pointer-events-none opacity-40 z-0 will-change-transform">
+    </div>
 
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 w-full z-50 p-4 md:p-6 flex justify-between items-start pointer-events-none">
@@ -241,7 +233,7 @@
 
             <div class="max-w-6xl mx-auto relative flex flex-col items-center justify-center pt-8">
                 <div
-                    class="flex flex-col md:flex-row items-center md:items-start md:justify-center gap-12 md:gap-24 mb-12 relative opacity-0-initial animate-fade-in-up">
+                    class="flex flex-col md:flex-row items-center md:items-start md:justify-center gap-12 md:gap-24 mb-12 relative gsap-hero-stagger opacity-0 invisible">
                     <div class="absolute top-[60%] right-4 md:right-[15%] tape w-24 h-6 z-20 hidden md:block">
                     </div>
 
@@ -265,7 +257,7 @@
 
                     <!-- Profile Photo Aligned Right -->
                     <div
-                        class="w-64 md:w-80 relative z-30 group project-card shrink-0 opacity-0-initial animate-fade-in-up delay-200">
+                        class="w-64 md:w-80 relative z-30 group project-card shrink-0 gsap-hero-stagger opacity-0 invisible">
                         <div class="absolute -top-5 -left-4 tape w-20 h-8 -rotate-12 z-40"></div>
                         <div class="absolute bottom-4 -right-6 tape w-32 h-10 rotate-6 z-40"></div>
                         <div class="animate-float">
@@ -291,22 +283,21 @@
                 </div>
 
                 <!-- Text Block Centered Below -->
-                <div
-                    class="max-w-3xl relative z-30 flex flex-col items-center opacity-0-initial animate-fade-in-up delay-400">
-                    <div class="p-8 md:p-10 border border-black bg-white/60 backdrop-blur-md relative -rotate-1">
+                <div class="max-w-3xl relative z-30 flex flex-col items-center gsap-hero-stagger opacity-0 invisible">
+                    <div class="p-8 md:p-10 border border-black glass-panel relative -rotate-1">
                         <p data-i18n="hero-desc"
                             class="font-sans text-base md:text-xl leading-relaxed font-medium text-center">
-                            Engenheiro de software com experiência em desenvolvimento full-stack, design social
-                            media, motion e IA. Atualmente dedico meu foco no desenvolvimento de serviços e soluções que
-                            possam ajudar pessoas.
+                            Transformo ideias complexas em produtos digitais de alto desempenho. Desenvolvimento de
+                            ponta
+                            aliado a um design estratégico para acelerar seus resultados e escalar seu negócio.
                         </p>
                     </div>
 
-                    <div
-                        class="flex flex-col md:flex-row items-center font-mono text-xs md:text-sm gap-4 mt-8 text-gray-700 bg-white/40 px-6 py-2 border border-black backdrop-blur-sm">
-                        <span>[ SYSTEM_STATUS: OPERATIONAL ]</span>
-                        <span class="hidden md:block">|</span>
-                        <span>STACK: JAVASCRIPT, HTML, TAILWIND</span>
+                    <div class="mt-8 flex flex-col items-center">
+                        <a href="#contact" data-i18n="hero-cta" id="hero-btn"
+                            class="bg-black text-white px-8 py-4 text-xl font-display font-bold uppercase transition-colors shadow-[8px_8px_0px_0px_rgba(209,209,207,1)] hover:bg-white hover:text-black border border-black block relative z-30">
+                            Iniciar um Projeto
+                        </a>
                     </div>
                 </div>
 
@@ -357,7 +348,7 @@
                         Desenvolvimento_Full_Stack
                     </h3>
                 </div>
-                <div class="flex gap-8 mt-8 px-6 md:px-16 overflow-x-auto pb-12 snap-x snap-mandatory scroll-smooth"
+                <div class="flex gap-8 pt-12 -mt-4 px-6 md:px-16 overflow-x-auto pb-12 snap-x snap-mandatory scroll-smooth"
                     style="scrollbar-width: none; -ms-overflow-style: none;">
                     <style>
                         .flex.overflow-x-auto::-webkit-scrollbar {
@@ -463,7 +454,7 @@
                     <div class="absolute right-4 md:right-[15%] tape w-32 h-8 rotate-6 z-20"></div>
                     <h3 data-i18n="proj-design"
                         class="font-mono text-xs uppercase bg-black text-white px-3 py-1.5 tracking-widest inline-block shadow-[4px_4px_0px_0px_rgba(209,209,207,1)] relative z-30">
-                        Design_&_Motion
+                        Design
                     </h3>
                 </div>
                 <div
@@ -554,7 +545,7 @@
 
         <!-- Services & Philosophy -->
         <section class="px-6 md:px-16 mb-60 reveal-on-scroll">
-            <div class="max-w-4xl mx-auto relative border border-black p-6 sm:p-8 md:p-12 bg-white/40 backdrop-blur-md">
+            <div class="max-w-4xl mx-auto relative border border-black p-6 sm:p-8 md:p-12 glass-panel">
                 <div class="absolute -top-4 -right-4 tape w-24 md:w-32 h-6 md:h-8 rotate-6"></div>
                 <div class="absolute -bottom-4 -left-4 tape w-24 h-6 -rotate-12"></div>
 
@@ -565,15 +556,13 @@
                 <div class="grid md:grid-cols-3 gap-8">
                     <div class="md:col-span-2 text-justify">
                         <p data-i18n="serv-p1" class="text-xl font-medium leading-relaxed mb-6">
-                            Desenvolvimento não é apenas código. É sobre criar soluções sólidas com <span
-                                data-i18n="serv-p1-span" class="italic underline decoration-2">experiências
-                                marcantes</span>. De arquiteturas
-                            backend até o polimento visual.
+                            Sites e Web Apps <span class="italic underline decoration-2">ultra-rápidos</span> que mantêm
+                            os clientes presos à sua tela. Esqueça templates padronizados: crio interfaces exclusivas
+                            modeladas para o seu nicho.
                         </p>
                         <p data-i18n="serv-p2" class="font-mono text-sm text-gray-600">
-                            Meu objetivo é criar soluções que facilitem a vida das pessoas. Faço isso conectando
-                            engenharia de software a experiências fluidas, com interfaces modernas, design e
-                            IA.
+                            Código sustentável, seguro e escalável voltado para o crescimento. O foco é conectar
+                            engenharia de software tradicional a experiências fluidas focadas em conversão.
                         </p>
                     </div>
 
@@ -583,11 +572,11 @@
                             <span class="font-display font-bold text-lg uppercase">Full-Stack Dev</span>
                         </div>
                         <div class="border-t border-black pt-4">
-                            <span data-i18n="serv-sm" class="font-display font-bold text-lg uppercase">Design Social
-                                Media</span>
+                            <span class="font-display font-bold text-lg uppercase">Landing Page</span>
                         </div>
                         <div class="border-t border-black pt-4">
-                            <span class="font-display font-bold text-lg uppercase">Motion</span>
+                            <span data-i18n="serv-sm" class="font-display font-bold text-lg uppercase">Design Social
+                                Media</span>
                         </div>
                     </div>
                 </div>
@@ -597,6 +586,18 @@
         <!-- Terminal Contact Section -->
         <section id="contact" class="px-6 md:px-16 relative reveal-on-scroll">
             <div class="max-w-4xl mx-auto">
+
+                <div class="text-center mb-12 relative z-30">
+                    <a href="https://wa.me/5588997011112" target="_blank" data-i18n="contact-cta" id="contact-whatsapp"
+                        class="inline-block bg-[#25D366] text-white border-2 border-black font-display font-bold text-lg sm:text-xl uppercase px-8 py-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:bg-black hover:text-[#25D366] transition-colors mb-4 mr-0 sm:mr-4">
+                        👉 Falar no WhatsApp
+                    </a>
+                    <a href="mailto:iflagdev@gmail.com" data-i18n="contact-mail-btn" id="contact-mail"
+                        class="inline-block bg-white text-black border-2 border-black font-display font-bold text-lg sm:text-xl uppercase px-8 py-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:bg-black hover:text-white transition-colors mb-4">
+                        ✉️ Enviar E-mail
+                    </a>
+                </div>
+
                 <div
                     class="bg-[#1a1a1a] rounded-none border-2 border-black shadow-[15px_15px_0px_0px_rgba(0,0,0,1)] overflow-hidden font-mono text-sm relative z-20">
 
@@ -686,7 +687,7 @@
     <footer class="p-8 border-t border-black bg-white/20 mt-40 backdrop-blur-sm">
         <div class="flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="font-mono text-[10px] uppercase">
-                © 2026_ITALO_BANDEIRA // ENGENHEIRO_DE_SOFTWARE // DESIGNER // MOTION // IA
+                © 2026_ITALO_BANDEIRA // ENGENHEIRO_DE_SOFTWARE // DESIGNER // IA
             </div>
             <div class="flex gap-8 font-display font-bold uppercase text-xs tracking-tighter">
                 <a data-i18n="footer-top" class="hover:line-through focus:outline-none focus:ring-2 focus:ring-black"
@@ -734,24 +735,116 @@
             });
         }
 
-        // Intersection Observer for Scroll Reveals
-        const revealElements = document.querySelectorAll('.reveal-on-scroll');
-        const revealOptions = {
-            threshold: 0.15,
-            rootMargin: "0px 0px -50px 0px"
-        };
+        // GSAP & AnimeJS Animations Setup
+        if (typeof gsap !== 'undefined' && typeof anime !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger);
 
-        const revealOnScroll = new IntersectionObserver(function (entries, observer) {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-                entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target);
+            // 1. Grid Parallax with GSAP
+            gsap.to("#grid-bg", {
+                backgroundPosition: "0px 150px",
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "body",
+                    start: "top top",
+                    end: "bottom bottom",
+                    scrub: 1
+                }
             });
-        }, revealOptions);
 
-        revealElements.forEach(el => {
-            revealOnScroll.observe(el);
-        });
+            // 2. Anime.js Hero Stagger Animation (Initial Load)
+            setTimeout(() => {
+                document.querySelectorAll('.gsap-hero-stagger').forEach(el => {
+                    el.classList.remove('invisible');
+                });
+
+                anime.timeline({
+                    easing: "spring(1, 80, 10, 0)",
+                })
+                    .add({
+                        targets: '.gsap-hero-stagger',
+                        translateY: [40, 0],
+                        opacity: [0, 1],
+                        delay: anime.stagger(150),
+                        duration: 1000
+                    });
+            }, 100);
+
+            // 3. GSAP ScrollTrigger for generic reveals 
+            const revealElements = document.querySelectorAll('.reveal-on-scroll');
+            revealElements.forEach(el => {
+                gsap.fromTo(el,
+                    { autoAlpha: 0, y: 50 },
+                    {
+                        autoAlpha: 1,
+                        y: 0,
+                        duration: 1,
+                        ease: "power3.out",
+                        scrollTrigger: {
+                            trigger: el,
+                            start: "top 85%",
+                            toggleActions: "play none none none"
+                        }
+                    }
+                );
+            });
+
+            // 4. Advanced 3D Hover on Project Cards using GSAP (Antigravity Spec)
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    const xPct = x / rect.width - 0.5;
+                    const yPct = y / rect.height - 0.5;
+
+                    gsap.to(card, {
+                        duration: 0.5,
+                        rotateX: -yPct * 20,
+                        rotateY: xPct * 20,
+                        ease: "power2.out"
+                    });
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    gsap.to(card, {
+                        duration: 0.8,
+                        rotateX: 0,
+                        rotateY: 0,
+                        ease: "elastic.out(1, 0.3)"
+                    });
+                });
+            });
+
+            // 5. Magnetic Kinetic Buttons
+            const buttons = document.querySelectorAll('#hero-btn, #contact-whatsapp, #contact-mail');
+            if (window.matchMedia("(pointer: fine)").matches) {
+                buttons.forEach(btn => {
+                    btn.addEventListener('mousemove', (e) => {
+                        const rect = btn.getBoundingClientRect();
+                        const x = e.clientX - rect.left - rect.width / 2;
+                        const y = e.clientY - rect.top - rect.height / 2;
+
+                        gsap.to(btn, {
+                            x: x * 0.3,
+                            y: y * 0.3,
+                            duration: 0.3,
+                            ease: "power2.out"
+                        });
+                    });
+
+                    btn.addEventListener('mouseleave', () => {
+                        gsap.to(btn, {
+                            x: 0,
+                            y: 0,
+                            duration: 0.8,
+                            ease: "elastic.out(1, 0.3)"
+                        });
+                    });
+                });
+            }
+        }
 
         // Terminal Typing Effect
         const terminalSection = document.getElementById('contact');
@@ -834,7 +927,8 @@
             pt: {
                 "nav-contact": "Contato",
                 "hero-role": "Engenheiro_de_Software",
-                "hero-desc": "Engenheiro de software com experiência em desenvolvimento full-stack, design social media, motion e IA. Atualmente dedico meu foco no desenvolvimento de serviços e soluções que possam ajudar pessoas.",
+                "hero-desc": "Transformo ideias complexas em produtos digitais de alto desempenho. Desenvolvimento de ponta aliado a um design estratégico para acelerar seus resultados e escalar seu negócio.",
+                "hero-cta": "Iniciar um Projeto",
                 "proj-title": "Projetos_",
                 "proj-desc": "Trabalhos recentes e experiências em produção.",
                 "proj-fs": "Desenvolvimento_Full_Stack",
@@ -843,12 +937,14 @@
                 "proj-bd": "Aplicativo mobile de rastreamento de rotinas, hábitos e produtividade.",
                 "proj-down": "Download App",
                 "proj-adv": "Landing page de alta conversão para escritório de advocacia imobiliária focado em distratos.",
-                "proj-design": "Design_&_Motion",
+                "proj-design": "Design",
                 "serv-title": "Engenharia_<br />Criativa.",
-                "serv-p1": "Desenvolvimento não é apenas código. É sobre criar soluções sólidas com <span class=\"italic underline decoration-2\">experiências marcantes</span>. De arquiteturas backend até o polimento visual.",
-                "serv-p2": "Meu objetivo é criar soluções que facilitem a vida das pessoas. Faço isso conectando a engenharia de software tradicional a experiências fluidas, com interfaces modernas, design e IA.",
+                "serv-p1": "Sites e Web apps <span class=\"italic underline decoration-2\">ultra-rápidos</span> que mantêm os clientes presos à sua tela. Esqueça templates padronizados: crio interfaces exclusivas modeladas para o seu nicho.",
+                "serv-p2": "Código sustentável, seguro e escalável voltado para o crescimento. O foco é conectar engenharia de software tradicional a experiências fluidas focadas em conversão.",
                 "serv-lbl": "Serviços",
                 "serv-sm": "Design Social Media",
+                "contact-cta": "👉 Falar no WhatsApp",
+                "contact-mail-btn": "✉️ Enviar E-mail",
                 "contact-email": "> E-mail Comercial:",
                 "footer-top": "Volte ao Topo",
                 "modal-close": "Fechar [X]"
@@ -856,7 +952,8 @@
             en: {
                 "nav-contact": "Contact",
                 "hero-role": "Software_Engineer",
-                "hero-desc": "Software engineer bridging full-stack development, social media design, motion, and AI. Currently focusing on building services and solutions that empower people.",
+                "hero-desc": "I transform complex ideas into high-performance digital products. Cutting-edge engineering combined with strategic design to accelerate your results and scale your business.",
+                "hero-cta": "Start a Project",
                 "proj-title": "Projects_",
                 "proj-desc": "Recent works and production experiences.",
                 "proj-fs": "Full_Stack_Development",
@@ -865,12 +962,14 @@
                 "proj-bd": "Mobile application for tracking routines, habits, and productivity.",
                 "proj-down": "Download App",
                 "proj-adv": "High-conversion landing page for real estate law firm focused on contract rescission.",
-                "proj-design": "Design_&_Motion",
+                "proj-design": "Design",
                 "serv-title": "Creative_<br />Engineering.",
-                "serv-p1": "Development isn't just code. It's about creating solid solutions with <span class=\"italic underline decoration-2\">striking experiences</span>. From backend architectures to visual polish.",
-                "serv-p2": "My goal is to create solutions that make people's lives easier. I achieve this by connecting traditional software engineering to fluid experiences with modern interfaces, design, and AI.",
+                "serv-p1": "Ultra-fast websites and web apps that keep clients glued to their screens. Forget cookie-cutter templates: I create exclusive interfaces modeled for your niche.",
+                "serv-p2": "Sustainable, secure, and scalable code built for growth. The focus is connecting traditional software engineering to fluid, conversion-focused experiences.",
                 "serv-lbl": "Services",
                 "serv-sm": "Social Media Design",
+                "contact-cta": "👉 Chat on WhatsApp",
+                "contact-mail-btn": "✉️ Send an Email",
                 "contact-email": "> Business E-mail:",
                 "footer-top": "Back to Top",
                 "modal-close": "Close [X]"

@@ -13,7 +13,7 @@
 
     <!-- Typography -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Inter:wght@300;400;700&family=Space+Mono&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300..800&family=DM+Sans:wght@300;400;500;700&family=Space+Mono&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
@@ -37,8 +37,8 @@
                         "guide": "#d1d1cf",
                     },
                     fontFamily: {
-                        "sans": ["Inter", "sans-serif"],
-                        "display": ["Space Grotesk", "sans-serif"],
+                        "sans": ["DM Sans", "sans-serif"],
+                        "display": ["Bricolage Grotesque", "sans-serif"],
                         "mono": ["Space Mono", "monospace"],
                     },
                 },
@@ -52,6 +52,18 @@
                 @apply bg-canvas text-black selection:bg-black selection:text-white;
                 background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
             }
+        }
+
+        /* ─── Acessibilidade: Reduzir Animações ──────── */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            .animate-marquee { animation: none !important; }
+            #custom-cursor { display: none !important; }
         }
         
         .grid-underlay {
@@ -493,9 +505,11 @@
                     <h2 data-i18n="contact-title"
                         class="font-display text-4xl sm:text-5xl md:text-7xl font-bold uppercase mb-8 leading-none">
                         Pronto para<br />Escalar suas<br /><span class="italic">Vendas?</span></h2>
-                    <a href="https://wa.me/5588997011112" target="_blank" data-i18n="contact-cta" id="contact-whatsapp"
-                        class="inline-block bg-[#25D366] text-white border-2 border-black font-display font-bold text-lg sm:text-xl uppercase px-8 py-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:bg-black hover:text-[#25D366] transition-colors mb-4 mr-0 sm:mr-4">
-                        👉 Falar no WhatsApp
+                    <!-- Preciso inserir a cor do instagram no botao -->
+                    <a href="https://www.instagram.com/italobandeira_design/" target="_blank" data-i18n="contact-cta"
+                        id="contact-instagram"
+                        class="inline-block bg-[#e1306c] text-black border-2 border-black font-display font-bold text-lg sm:text-xl uppercase px-8 py-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:bg-black hover:text-[#e1306c] transition-colors mb-4 mr-0 sm:mr-4">
+                        👉 Falar no Instagram
                     </a>
                     <a href="mailto:iflagdev@gmail.com" data-i18n="contact-mail-btn" id="contact-mail"
                         class="inline-block bg-white text-black border-2 border-black font-display font-bold text-lg sm:text-xl uppercase px-8 py-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:bg-black hover:text-white transition-colors mb-4">
@@ -639,7 +653,7 @@
             function updateCursor() {
                 cursorX += (targetX - cursorX) * 0.15;
                 cursorY += (targetY - cursorY) * 0.15;
-                cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
+                cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) translate(-50%, -50%)`;
 
                 if (Math.abs(targetX - cursorX) > 0.1 || Math.abs(targetY - cursorY) > 0.1) {
                     requestAnimationFrame(updateCursor);
@@ -899,7 +913,7 @@
                 "serv-p2": "High-performance loading and persuasive copywriting are essential for the success of your ads (Paid Traffic) and Google ranking (SEO). We deliver all of this in one place.",
                 "serv-lbl": "Services",
                 "serv-sm": "Offer Structuring & Copywriting",
-                "contact-cta": "👉 Chat on WhatsApp",
+                "contact-cta": "👉 Chat on Instagram",
                 "contact-mail-btn": "✉️ Send an Email",
                 "contact-email": "> Business E-mail:",
                 "footer-top": "Back to Top",

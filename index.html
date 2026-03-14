@@ -4,7 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ítalo Bandeira | Engenheiro de Software</title>
+  <meta name="description"
+    content="Ítalo Bandeira — Especialista em Landing Pages de Alta Conversão. Design estratégico, carregamento ultra-rápido e copywriting persuasivo para escalar suas vendas.">
+  <title>Ítalo Bandeira | Especialista em Landing Pages</title>
 
   <!-- Fontes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,6 +14,11 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap"
     rel="stylesheet">
+
+  <!-- Animation Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
   <!-- Tailwind via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -74,6 +81,27 @@
       cursor: none;
     }
 
+    /* ─── Acessibilidade: Reduzir Animações ──────── */
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+
+      .animate-marquee {
+        animation: none !important;
+      }
+
+      #three-canvas {
+        display: none !important;
+      }
+    }
+
     /* Custom cursor */
     #cursor {
       transition: width 0.2s, height 0.2s, background 0.2s;
@@ -82,6 +110,7 @@
 
     #cursor-ring {
       transition: all 0.12s ease-out;
+      will-change: transform;
     }
 
     body:has(a:hover) #cursor {
@@ -275,12 +304,12 @@
       0%,
       100% {
         opacity: 1;
-        box-shadow: 0 0 0 0 rgba(232, 255, 71, 0.5);
+        transform: scale(1);
       }
 
       50% {
-        opacity: 0.6;
-        box-shadow: 0 0 0 6px rgba(232, 255, 71, 0);
+        opacity: 0.4;
+        transform: scale(1.8);
       }
     }
 
@@ -326,8 +355,7 @@
     <p class="font-mono text-[10px] tracking-[0.3em] text-accent mb-5 opacity-0 animate-[fadeUp_0.8s_0.3s_forwards]">
       ESPECIALISTA EM LANDING PAGES DE ALTA CONVERSÃO</p>
     <h1
-      class="font-mono text-[clamp(52px,8vw,112px)] font-bold leading-[0.92] tracking-[-0.02em] text-fg opacity-0 animate-[fadeUp_0.9s_0.5s_forwards] glitch relative"
-      data-text="Páginas que">
+      class="font-mono text-[clamp(52px,8vw,112px)] font-bold leading-[0.92] tracking-[-0.02em] text-fg opacity-0 animate-[fadeUp_0.9s_0.5s_forwards] glitch relative">
       Páginas que<br><em class="not-italic text-accent">Vendem.</em>
     </h1>
     <div
@@ -351,7 +379,7 @@
 
   <!-- Skills Marquee Section -->
   <div id="skills-section" class="py-8 overflow-hidden border-y border-dim">
-    <div class="flex gap-0 w-max animate-marquee">
+    <div class="flex gap-0 w-max animate-marquee" style="will-change: transform;">
       <!-- Group 1 -->
       <span
         class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/40 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">Alta
@@ -413,7 +441,7 @@
   </div>
 
   <!-- Projects Section -->
-  <section class="px-6 py-20 md:px-12 md:py-32">
+  <section id="projects-section" class="px-6 py-20 md:px-12 md:py-32 reveal-section">
     <div class="flex items-end gap-6 mb-20">
       <div>
         <p class="font-mono text-[9px] tracking-[0.3em] text-accent mb-4 md:mb-12">// 002 — PROJETOS_</p>
@@ -444,7 +472,7 @@
 
         <!-- Card 1 -->
         <div
-          class="project-card shrink-0 w-[85vw] sm:w-[50vw] md:w-[35vw] lg:w-[32vw] snap-center relative overflow-hidden bg-dim aspect-[16/10] group cursor-none border border-dim transition-all duration-400 hover:border-accent/40 [transform:translateZ(0)]">
+          class="project-card shrink-0 w-[85vw] sm:w-[50vw] md:w-[35vw] lg:w-[32vw] snap-center relative overflow-hidden bg-dim aspect-[16/10] group cursor-none border border-dim transition-all duration-400 hover:border-accent/40 [transform:translateZ(0)] will-change-transform">
           <div class="card-scanline"></div>
           <span class="card-number">01</span>
           <img src="projetos/advocacia.png" alt="Hido Alves"
@@ -472,7 +500,7 @@
 
         <!-- Card 2 -->
         <div
-          class="project-card shrink-0 w-[85vw] sm:w-[50vw] md:w-[35vw] lg:w-[32vw] snap-center relative overflow-hidden bg-dim aspect-[16/10] group cursor-none border border-dim transition-all duration-400 hover:border-accent/40 [transform:translateZ(0)]">
+          class="project-card shrink-0 w-[85vw] sm:w-[50vw] md:w-[35vw] lg:w-[32vw] snap-center relative overflow-hidden bg-dim aspect-[16/10] group cursor-none border border-dim transition-all duration-400 hover:border-accent/40 [transform:translateZ(0)] will-change-transform">
           <div class="card-scanline"></div>
           <span class="card-number">02</span>
           <img src="projetos/energiaenxuta.png" alt="Energia Enxuta"
@@ -499,7 +527,7 @@
 
         <!-- Card 3 -->
         <div
-          class="project-card shrink-0 w-[85vw] sm:w-[50vw] md:w-[35vw] lg:w-[32vw] snap-center relative overflow-hidden bg-dim aspect-[16/10] group cursor-none border border-dim transition-all duration-400 hover:border-accent/40 [transform:translateZ(0)]">
+          class="project-card shrink-0 w-[85vw] sm:w-[50vw] md:w-[35vw] lg:w-[32vw] snap-center relative overflow-hidden bg-dim aspect-[16/10] group cursor-none border border-dim transition-all duration-400 hover:border-accent/40 [transform:translateZ(0)] will-change-transform">
           <div class="card-scanline"></div>
           <span class="card-number">03</span>
           <img src="projetos/betterday.png" alt="Betterday"
@@ -521,13 +549,13 @@
               class="inline-flex items-center gap-1.5 font-mono text-[10px] tracking-[0.12em] text-accent font-bold">VER
               PROJETO ↗</span>
           </div>
-          <a href="https://play.google.com/store/apps/details?id=com.iflag.betterday_habit_tracker" target="_blank"
-            rel="noopener noreferrer" class="absolute inset-0 z-10"></a>
+          <a href="https://italobandeira.github.io/betterday/index.html" target="_blank" rel="noopener noreferrer"
+            class="absolute inset-0 z-10"></a>
         </div>
 
         <!-- Card 4 -->
         <div
-          class="project-card shrink-0 w-[85vw] sm:w-[50vw] md:w-[35vw] lg:w-[32vw] snap-center relative overflow-hidden bg-dim aspect-[16/10] group cursor-none border border-dim transition-all duration-400 hover:border-accent/40 [transform:translateZ(0)]">
+          class="project-card shrink-0 w-[85vw] sm:w-[50vw] md:w-[35vw] lg:w-[32vw] snap-center relative overflow-hidden bg-dim aspect-[16/10] group cursor-none border border-dim transition-all duration-400 hover:border-accent/40 [transform:translateZ(0)] will-change-transform">
           <div class="card-scanline"></div>
           <span class="card-number">04</span>
           <img src="projetos/portfolioMinimalista.PNG" alt="Portfólio Minimalista"
@@ -574,7 +602,7 @@
 
   <!-- About Section -->
   <section id="about-section"
-    class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center border-t border-dim px-6 py-20 md:px-12 md:py-32">
+    class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center border-t border-dim px-6 py-20 md:px-12 md:py-32 reveal-section">
     <div>
       <p class="font-mono text-[9px] tracking-[0.3em] text-accent mb-12">// 003 — SOBRE_</p>
       <h2 class="font-mono text-[clamp(36px,4vw,58px)] font-bold leading-[1.05] tracking-[-0.02em] mb-8">Design
@@ -642,7 +670,8 @@
   </section>
 
   <!-- Contact Section -->
-  <section id="contact-section" class="relative z-10 text-center border-t border-dim px-6 py-20 md:px-12 md:py-40">
+  <section id="contact-section"
+    class="relative z-10 text-center border-t border-dim px-6 py-20 md:px-12 md:py-40 reveal-section">
     <p class="font-mono text-[9px] tracking-[0.3em] text-accent mb-6 text-center">// 004 — CONTATO_</p>
     <h2 class="font-mono text-[clamp(40px,7vw,100px)] font-bold tracking-[-0.02em] leading-[0.95] mb-12">
       Pronto para<br>Escalar suas<br><span class="text-accent">Vendas?</span>
@@ -651,9 +680,9 @@
       <a href="mailto:iflagdev@gmail.com"
         class="font-mono text-[11px] tracking-[0.15em] text-fg/40 no-underline px-6 py-3 border border-dim transition-all duration-200 hover:text-accent hover:border-accent hover:bg-accent/5">✉
         IFLAGDEV@GMAIL.COM</a>
-      <a href="https://wa.me/5588997011112"
+      <a href="https://www.instagram.com/italobandeira_design/"
         class="font-mono text-[11px] tracking-[0.15em] text-fg/40 no-underline px-6 py-3 border border-dim transition-all duration-200 hover:text-accent hover:border-accent hover:bg-accent/5"
-        target="_blank">💬 WHATSAPP</a>
+        target="_blank">💬 INSTAGRAM</a>
       <a href="https://www.linkedin.com/in/italo-bandeira-035975106/"
         class="font-mono text-[11px] tracking-[0.15em] text-fg/40 no-underline px-6 py-3 border border-dim transition-all duration-200 hover:text-accent hover:border-accent hover:bg-accent/5"
         target="_blank">↗ LINKEDIN</a>
@@ -674,6 +703,70 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>
+    // ─── GSAP + Anime.js Animations ───────────────────────
+    if (typeof gsap !== 'undefined' && typeof anime !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Hero stagger with Anime.js (rich spring easing)
+      anime.timeline({
+        easing: 'spring(1, 80, 10, 0)',
+      }).add({
+        targets: '#hero > *',
+        translateY: [30, 0],
+        opacity: [0, 1],
+        delay: anime.stagger(120),
+        duration: 1200,
+        begin: () => {
+          document.querySelectorAll('#hero > *').forEach(el => {
+            el.style.opacity = '0';
+          });
+        }
+      });
+
+      // ScrollTrigger reveals for sections
+      document.querySelectorAll('.reveal-section').forEach(section => {
+        gsap.fromTo(section,
+          { autoAlpha: 0, y: 40 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.9,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top 85%',
+              toggleActions: 'play none none none'
+            }
+          }
+        );
+      });
+
+      // Staggered card entrance with Anime.js
+      const cardsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            anime({
+              targets: '.project-card',
+              translateY: [40, 0],
+              opacity: [0, 1],
+              easing: 'spring(1, 80, 10, 0)',
+              delay: anime.stagger(100),
+              duration: 1000,
+              begin: () => {
+                document.querySelectorAll('.project-card').forEach(c => {
+                  c.style.opacity = '0';
+                });
+              }
+            });
+            cardsObserver.disconnect();
+          }
+        });
+      }, { threshold: 0.2 });
+
+      const projSection = document.getElementById('projects-section');
+      if (projSection) cardsObserver.observe(projSection);
+    }
+
     // ─── Carousel Navigation ──────────────────────────────
     const carouselP = document.getElementById('projects-carousel');
     const btnNext = document.getElementById('btn-next-proj');

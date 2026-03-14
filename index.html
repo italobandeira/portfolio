@@ -114,6 +114,181 @@
     .glitch::before {
       color: #e8ff47;
     }
+
+    /* ─── Project Card Scanline ─────────────────────── */
+    .project-card .card-scanline {
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #e8ff47, transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 5;
+    }
+
+    .project-card:hover .card-scanline {
+      opacity: 1;
+      animation: cardScanline 1.5s ease-in-out infinite;
+    }
+
+    @keyframes cardScanline {
+      0% {
+        top: 0;
+      }
+
+      100% {
+        top: 100%;
+      }
+    }
+
+    /* ─── Project Card Number ──────────────────────── */
+    .project-card .card-number {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      font-family: 'Space Mono', monospace;
+      font-size: 48px;
+      font-weight: 700;
+      color: rgba(232, 255, 71, 0);
+      z-index: 4;
+      transition: all 0.4s ease;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .project-card:hover .card-number {
+      color: rgba(232, 255, 71, 0.12);
+    }
+
+    /* ─── Corner Decorations (About Photo) ─────────── */
+    .corner-deco {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      z-index: 3;
+      opacity: 0.4;
+      transition: all 0.5s ease;
+    }
+
+    .corner-deco::before,
+    .corner-deco::after {
+      content: '';
+      position: absolute;
+      background: #e8ff47;
+      transition: all 0.5s ease;
+    }
+
+    /* horizontal bar */
+    .corner-deco::before {
+      width: 100%;
+      height: 1px;
+    }
+
+    /* vertical bar */
+    .corner-deco::after {
+      width: 1px;
+      height: 100%;
+    }
+
+    .corner-tl {
+      top: -6px;
+      left: -6px;
+    }
+
+    .corner-tl::before {
+      top: 0;
+      left: 0;
+    }
+
+    .corner-tl::after {
+      top: 0;
+      left: 0;
+    }
+
+    .corner-tr {
+      top: -6px;
+      right: -6px;
+    }
+
+    .corner-tr::before {
+      top: 0;
+      right: 0;
+    }
+
+    .corner-tr::after {
+      top: 0;
+      right: 0;
+    }
+
+    .corner-bl {
+      bottom: -6px;
+      left: -6px;
+    }
+
+    .corner-bl::before {
+      bottom: 0;
+      left: 0;
+    }
+
+    .corner-bl::after {
+      bottom: 0;
+      left: 0;
+    }
+
+    .corner-br {
+      bottom: -6px;
+      right: -6px;
+    }
+
+    .corner-br::before {
+      bottom: 0;
+      right: 0;
+    }
+
+    .corner-br::after {
+      bottom: 0;
+      right: 0;
+    }
+
+    .photo-wrapper:hover .corner-deco {
+      opacity: 1;
+      width: 28px;
+      height: 28px;
+    }
+
+    /* ─── Status Pulse ──────────────────────────────── */
+    .status-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #e8ff47;
+      animation: statusPulse 2s ease-in-out infinite;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+
+    @keyframes statusPulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        box-shadow: 0 0 0 0 rgba(232, 255, 71, 0.5);
+      }
+
+      50% {
+        opacity: 0.6;
+        box-shadow: 0 0 0 6px rgba(232, 255, 71, 0);
+      }
+    }
+
+    /* ─── Dots Pattern (About Photo BG) ─────────────── */
+    .dots-pattern {
+      background-image: radial-gradient(circle, rgba(232, 255, 71, 0.08) 1px, transparent 1px);
+      background-size: 16px 16px;
+    }
   </style>
 </head>
 
@@ -250,47 +425,86 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-0.5">
 
       <!-- Card 1 -->
-      <div class="relative overflow-hidden bg-dim aspect-[4/3] group cursor-none">
+      <div
+        class="project-card relative overflow-hidden bg-dim aspect-[16/10] group cursor-none border border-dim transition-all duration-400 hover:border-accent/40">
+        <div class="card-scanline"></div>
+        <span class="card-number">01</span>
         <img src="projetos/advocacia.png" alt="Hido Alves"
           class="w-full h-full object-cover block grayscale-[80%] brightness-60 transition-all duration-500 group-hover:grayscale-0 group-hover:brightness-[0.85] group-hover:scale-105">
         <div
-          class="absolute inset-0 p-6 flex flex-col justify-end bg-gradient-to-t from-bg/90 to-transparent/60 translate-y-5 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+          class="absolute inset-0 p-6 flex flex-col justify-end bg-gradient-to-t from-bg/95 via-bg/40 to-transparent translate-y-5 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 z-[3]">
           <p class="font-mono text-[9px] tracking-[0.25em] text-accent mb-2">LANDING PAGE DE ALTA CONVERSÃO</p>
           <p class="font-mono text-lg font-bold mb-1">Hido_Alves</p>
-          <p class="text-xs text-fg/60 leading-relaxed">Landing page de alta conversão para advocacia especializada em
+          <div class="flex gap-2 mb-2">
+            <span class="font-mono text-[8px] tracking-[0.1em] text-fg/40 border border-fg/10 px-2 py-0.5">HTML</span>
+            <span
+              class="font-mono text-[8px] tracking-[0.1em] text-fg/40 border border-fg/10 px-2 py-0.5">TAILWIND</span>
+            <span class="font-mono text-[8px] tracking-[0.1em] text-fg/40 border border-fg/10 px-2 py-0.5">JS</span>
+          </div>
+          <p class="text-xs text-fg/60 leading-relaxed mb-3">Landing page de alta conversão para advocacia especializada
+            em
             Direito Imobiliário.</p>
+          <span
+            class="inline-flex items-center gap-1.5 font-mono text-[10px] tracking-[0.12em] text-accent font-bold">VER
+            PROJETO ↗</span>
         </div>
-        <a href="https://italobandeira.github.io/landingpage-advocacia/" target="_blank"
+        <a href="https://italobandeira.github.io/landingpage-advocacia/" target="_blank" rel="noopener noreferrer"
           class="absolute inset-0 z-10"></a>
       </div>
 
       <!-- Card 2 -->
-      <div class="relative overflow-hidden bg-dim aspect-[4/3] group cursor-none">
+      <div
+        class="project-card relative overflow-hidden bg-dim aspect-[16/10] group cursor-none border border-dim transition-all duration-400 hover:border-accent/40">
+        <div class="card-scanline"></div>
+        <span class="card-number">02</span>
         <img src="projetos/energiaenxuta.png" alt="Energia Enxuta"
           class="w-full h-full object-cover block grayscale-[80%] brightness-60 transition-all duration-500 group-hover:grayscale-0 group-hover:brightness-[0.85] group-hover:scale-105">
         <div
-          class="absolute inset-0 p-6 flex flex-col justify-end bg-gradient-to-t from-bg/90 to-transparent/60 translate-y-5 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+          class="absolute inset-0 p-6 flex flex-col justify-end bg-gradient-to-t from-bg/95 via-bg/40 to-transparent translate-y-5 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 z-[3]">
           <p class="font-mono text-[9px] tracking-[0.25em] text-accent mb-2">SAAS / WEB</p>
           <p class="font-mono text-lg font-bold mb-1">Energia_Enxuta</p>
-          <p class="text-xs text-fg/60 leading-relaxed">Plataforma de gestão de eficiência energética focada na
+          <div class="flex gap-2 mb-2">
+            <span class="font-mono text-[8px] tracking-[0.1em] text-fg/40 border border-fg/10 px-2 py-0.5">NEXTJS</span>
+            <span
+              class="font-mono text-[8px] tracking-[0.1em] text-fg/40 border border-fg/10 px-2 py-0.5">TAILWIND</span>
+          </div>
+          <p class="text-xs text-fg/60 leading-relaxed mb-3">Plataforma de gestão de eficiência energética focada na
             conversão B2B.</p>
+          <span
+            class="inline-flex items-center gap-1.5 font-mono text-[10px] tracking-[0.12em] text-accent font-bold">VER
+            PROJETO ↗</span>
         </div>
-        <a href="https://energiaenxuta.com/" target="_blank" class="absolute inset-0 z-10"></a>
+        <a href="https://energiaenxuta.com/" target="_blank" rel="noopener noreferrer"
+          class="absolute inset-0 z-10"></a>
       </div>
 
       <!-- Card 3 -->
-      <div class="relative overflow-hidden bg-dim aspect-[4/3] group cursor-none">
+      <div
+        class="project-card relative overflow-hidden bg-dim aspect-[16/10] group cursor-none border border-dim transition-all duration-400 hover:border-accent/40">
+        <div class="card-scanline"></div>
+        <span class="card-number">03</span>
         <img src="projetos/betterday.png" alt="Betterday"
           class="w-full h-full object-cover bg-[#0d0d0d] block grayscale-[80%] brightness-60 transition-all duration-500 group-hover:grayscale-0 group-hover:brightness-[0.85] group-hover:scale-105">
         <div
-          class="absolute inset-0 p-6 flex flex-col justify-end bg-gradient-to-t from-bg/90 to-transparent/60 translate-y-5 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+          class="absolute inset-0 p-6 flex flex-col justify-end bg-gradient-to-t from-bg/95 via-bg/40 to-transparent translate-y-5 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 z-[3]">
           <p class="font-mono text-[9px] tracking-[0.25em] text-accent mb-2">MOBILE / ANDROID</p>
           <p class="font-mono text-lg font-bold mb-1">Betterday</p>
-          <p class="text-xs text-fg/60 leading-relaxed">App de rastreamento de rotinas desenhado para máxima retenção de
+          <div class="flex gap-2 mb-2">
+            <span
+              class="font-mono text-[8px] tracking-[0.1em] text-fg/40 border border-fg/10 px-2 py-0.5">FLUTTER</span>
+            <span class="font-mono text-[8px] tracking-[0.1em] text-fg/40 border border-fg/10 px-2 py-0.5">DART</span>
+            <span
+              class="font-mono text-[8px] tracking-[0.1em] text-fg/40 border border-fg/10 px-2 py-0.5">FIREBASE</span>
+          </div>
+          <p class="text-xs text-fg/60 leading-relaxed mb-3">App de rastreamento de rotinas desenhado para máxima
+            retenção de
             usuários.</p>
+          <span
+            class="inline-flex items-center gap-1.5 font-mono text-[10px] tracking-[0.12em] text-accent font-bold">VER
+            PROJETO ↗</span>
         </div>
         <a href="https://play.google.com/store/apps/details?id=com.iflag.betterday_habit_tracker" target="_blank"
-          class="absolute inset-0 z-10"></a>
+          rel="noopener noreferrer" class="absolute inset-0 z-10"></a>
       </div>
 
     </div>
@@ -327,16 +541,39 @@
       </div>
     </div>
 
-    <div class="relative w-full max-w-[400px] mx-auto mt-4">
-      <div class="relative overflow-hidden bg-dim aspect-[4/5] group border border-dim">
+    <div class="photo-wrapper relative w-full max-w-[400px] mx-auto mt-4 group">
+      <!-- Dots pattern background -->
+      <div class="dots-pattern absolute -inset-4 z-0 opacity-40 transition-opacity duration-500 group-hover:opacity-70">
+      </div>
+
+      <!-- Photo container -->
+      <div
+        class="relative overflow-hidden aspect-[3/4] border border-accent/20 shadow-[0_0_25px_rgba(232,255,71,0.06)] transition-all duration-500 group-hover:border-accent/50 group-hover:shadow-[0_0_40px_rgba(232,255,71,0.12)] z-[1]">
+        <!-- Corner decorations -->
+        <div class="corner-deco corner-tl"></div>
+        <div class="corner-deco corner-tr"></div>
+        <div class="corner-deco corner-bl"></div>
+        <div class="corner-deco corner-br"></div>
+
         <img src="projetos/profile-photo.png" alt="Ítalo Bandeira"
           class="w-full h-full object-cover block grayscale-[80%] brightness-75 contrast-125 transition-all duration-500 group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-105">
+
+        <!-- Gradient overlay -->
         <div
-          class="absolute inset-0 bg-accent/10 mix-blend-overlay pointer-events-none transition-opacity duration-500 group-hover:opacity-0">
+          class="absolute inset-0 bg-gradient-to-br from-accent/8 via-transparent to-bg/20 mix-blend-overlay pointer-events-none transition-opacity duration-500 group-hover:opacity-0">
+        </div>
+
+        <!-- Bottom bar inside photo -->
+        <div
+          class="absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-accent/40 to-transparent transition-opacity duration-500 opacity-0 group-hover:opacity-100">
         </div>
       </div>
-      <div class="flex justify-between items-center mt-3">
-        <p class="font-mono text-[9px] tracking-[0.25em] text-accent">// FOUNDER</p>
+
+      <!-- Captions -->
+      <div class="flex justify-between items-center mt-3 relative z-[1]">
+        <p class="font-mono text-[9px] tracking-[0.25em] text-accent flex items-center">
+          <span class="status-dot"></span>// FOUNDER & DEVELOPER
+        </p>
         <p class="font-mono text-[9px] tracking-[0.25em] text-fg/30 text-right">ÍTALO_BANDEIRA.JPG</p>
       </div>
     </div>

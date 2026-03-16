@@ -318,10 +318,26 @@
       background-image: radial-gradient(circle, rgba(232, 255, 71, 0.08) 1px, transparent 1px);
       background-size: 16px 16px;
     }
+
+    /* ─── Noise Texture Overlay ─────────────────────── */
+    #noise-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9997;
+      opacity: 0.04;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
   </style>
 </head>
 
 <body class="bg-bg text-fg font-sans overflow-x-hidden">
+
+  <!-- Grain Texture Overlay -->
+  <div id="noise-overlay"></div>
 
   <!-- Cursores Customizados -->
   <div id="cursor"
@@ -335,23 +351,27 @@
 
   <!-- Navegação -->
   <nav
-    class="fixed top-0 left-0 right-0 z-[100] flex justify-between items-center px-6 py-5 md:px-12 md:py-7 mix-blend-normal">
-    <a href="#" class="font-mono text-[11px] tracking-[0.15em] text-fg no-underline opacity-90 block">
-      ÍTALO_BANDEIRA
-      <span class="block text-accent text-[9px] mt-0.5 tracking-[0.2em]">● ESPECIALISTA_EM_LANDING_PAGES</span>
+    class="fixed top-0 left-0 right-0 z-[100] flex justify-between items-center px-6 py-5 md:px-12 bg-bg/40 backdrop-blur-md border-b border-white/5 transition-all duration-300">
+    <a href="#" class="font-mono text-[12px] tracking-[0.15em] text-fg no-underline opacity-90 block">
+      ITALO_BANDEIRA
+      <span class="block text-accent text-[10px] mt-0.5 tracking-[0.2em]">● ESPECIALISTA_EM_LANDING_PAGES</span>
     </a>
-    <ul class="hidden md:flex gap-9 list-none text-[10px] tracking-[0.15em] font-mono">
+    <ul class="hidden md:flex gap-9 list-none text-[12px] tracking-[0.15em] font-mono">
       <li><a href="#projects-section"
-          class="text-fg no-underline opacity-50 hover:opacity-100 transition-opacity duration-200">PROJETOS</a></li>
+          class="text-fg no-underline opacity-60 hover:opacity-100 transition-opacity duration-200 hover:text-accent">PROJETOS</a>
+      </li>
       <li><a href="#about-section"
-          class="text-fg no-underline opacity-50 hover:opacity-100 transition-opacity duration-200">SOBRE</a></li>
+          class="text-fg no-underline opacity-60 hover:opacity-100 transition-opacity duration-200 hover:text-accent">SOBRE</a>
+      </li>
       <li><a href="#contact-section"
-          class="text-fg no-underline opacity-50 hover:opacity-100 transition-opacity duration-200">CONTATO</a></li>
+          class="text-fg no-underline opacity-60 hover:opacity-100 transition-opacity duration-200 hover:text-accent">CONTATO</a>
+      </li>
     </ul>
   </nav>
 
   <!-- Hero Section -->
-  <section id="hero" class="relative z-10 h-screen flex flex-col justify-end px-6 pb-12 md:px-12 md:pb-16 pt-0">
+  <section id="hero"
+    class="relative z-10 h-[calc(70vh-4rem)] sm:h-[calc(90vh-4rem)] flex flex-col justify-end px-6 pb-12 md:px-12 md:pb-16 pt-0">
     <p class="font-mono text-[10px] tracking-[0.3em] text-accent mb-5 opacity-0 animate-[fadeUp_0.8s_0.3s_forwards]">
       ESPECIALISTA EM LANDING PAGES DE ALTA CONVERSÃO</p>
     <h1
@@ -382,229 +402,70 @@
     <div class="flex gap-0 w-max animate-marquee" style="will-change: transform;">
       <!-- Group 1 -->
       <span
-        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/40 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">Alta
+        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/60 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">Alta
         Conversão</span>
       <span
-        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/40 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">Design
+        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/60 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">Design
         Exclusivo</span>
       <span
-        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/40 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">Carregamento
+        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/60 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">Carregamento
         Rápido</span>
       <span
-        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/40 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">SEO
+        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/60 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">SEO
         Otimizado</span>
       <span
-        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/40 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">Copywriting
+        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/60 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">Copywriting
         Persuasivo</span>
       <span
-        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/40 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">Mobile
+        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/60 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">Mobile
         First</span>
       <!-- Group 2 -->
       <span
-        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/40 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">Alta
+        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/60 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">Alta
         Conversão</span>
       <span
-        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/40 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">Design
+        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/60 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">Design
         Exclusivo</span>
       <span
-        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/40 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">Carregamento
+        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/60 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">Carregamento
         Rápido</span>
       <span
-        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/40 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">SEO
+        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/60 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">SEO
         Otimizado</span>
       <span
-        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/40 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">Copywriting
+        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/60 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">Copywriting
         Persuasivo</span>
       <span
-        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/40 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">Mobile
+        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/60 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">Mobile
         First</span>
       <!-- Group 3 -->
       <span
-        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/40 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">Alta
+        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/60 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">Alta
         Conversão</span>
       <span
-        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/40 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">Design
+        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/60 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">Design
         Exclusivo</span>
       <span
-        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/40 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">Carregamento
+        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/60 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">Carregamento
         Rápido</span>
       <span
-        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/40 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">SEO
+        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/60 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">SEO
         Otimizado</span>
       <span
-        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/40 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">Copywriting
+        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/60 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">Copywriting
         Persuasivo</span>
       <span
-        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/40 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">Mobile
+        class="flex items-center gap-6 px-8 font-mono text-[14px] tracking-[0.15em] text-fg/60 whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60">Mobile
         First</span>
     </div>
   </div>
 
-  <!-- Projects Section -->
-  <section id="projects-section" class="px-6 py-20 md:px-12 md:py-32 reveal-section">
-    <div class="flex items-end gap-6 mb-20">
-      <div>
-        <p class="font-mono text-[9px] tracking-[0.3em] text-accent mb-4 md:mb-12">// 002 — PROJETOS_</p>
-        <h2 class="font-mono text-[clamp(28px,5vw,64px)] font-bold leading-none tracking-[-0.02em]">
-          Trabalhos<br>Recentes.</h2>
-      </div>
-    </div>
-
-    <!-- Horizontal Carousel Wrapper with Edge Fades -->
-    <div class="relative w-[100vw] overflow-hidden left-1/2 -translate-x-1/2 group/carousel">
-      <!-- Edge Fades for aesthetic depth -->
-      <div
-        class="absolute left-0 top-0 bottom-0 w-8 md:w-32 bg-gradient-to-r from-bg to-transparent z-20 pointer-events-none">
-      </div>
-      <div
-        class="absolute right-0 top-0 bottom-0 w-8 md:w-32 bg-gradient-to-l from-bg to-transparent z-20 pointer-events-none">
-      </div>
-
-      <!-- Scrollable Container -->
-      <div id="projects-carousel"
-        class="flex gap-4 md:gap-8 mt-4 overflow-x-auto pb-16 pt-4 snap-x snap-mandatory scroll-smooth px-6 md:px-12"
-        style="scrollbar-width: none; -ms-overflow-style: none;">
-        <style>
-          #projects-carousel::-webkit-scrollbar {
-            display: none;
-          }
-        </style>
-
-        <!-- Card 1 -->
-        <div
-          class="project-card shrink-0 w-[85vw] sm:w-[50vw] md:w-[35vw] lg:w-[32vw] snap-center relative overflow-hidden bg-dim aspect-[16/10] group cursor-none border border-dim transition-all duration-400 hover:border-accent/40 [transform:translateZ(0)] will-change-transform">
-          <div class="card-scanline"></div>
-          <span class="card-number">01</span>
-          <img src="projetos/advocacia.png" alt="Hido Alves"
-            class="w-full h-full object-cover block grayscale-[80%] brightness-60 transition-[filter,transform] duration-500 group-hover:grayscale-0 group-hover:brightness-[0.85] group-hover:scale-105 will-change-[filter,transform] [transform:translateZ(0)]">
-          <div
-            class="absolute inset-0 p-6 flex flex-col justify-end bg-gradient-to-t from-bg/95 via-bg/40 to-transparent translate-y-5 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 z-[3]">
-            <p class="font-mono text-[9px] tracking-[0.25em] text-accent mb-2">LANDING PAGE DE ALTA CONVERSÃO</p>
-            <p class="font-mono text-lg font-bold mb-1">Hido_Alves</p>
-            <div class="flex gap-2 mb-2 flex-wrap">
-              <span class="font-mono text-[8px] tracking-[0.1em] text-fg/40 border border-fg/10 px-2 py-0.5">HTML</span>
-              <span
-                class="font-mono text-[8px] tracking-[0.1em] text-fg/40 border border-fg/10 px-2 py-0.5">TAILWIND</span>
-              <span class="font-mono text-[8px] tracking-[0.1em] text-fg/40 border border-fg/10 px-2 py-0.5">JS</span>
-            </div>
-            <p class="text-xs text-fg/60 leading-relaxed mb-3">Landing page de alta conversão para advocacia
-              especializada
-              em Direito Imobiliário.</p>
-            <span
-              class="inline-flex items-center gap-1.5 font-mono text-[10px] tracking-[0.12em] text-accent font-bold">VER
-              PROJETO ↗</span>
-          </div>
-          <a href="https://italobandeira.github.io/landingpage-advocacia/" target="_blank" rel="noopener noreferrer"
-            class="absolute inset-0 z-10"></a>
-        </div>
-
-        <!-- Card 2 -->
-        <div
-          class="project-card shrink-0 w-[85vw] sm:w-[50vw] md:w-[35vw] lg:w-[32vw] snap-center relative overflow-hidden bg-dim aspect-[16/10] group cursor-none border border-dim transition-all duration-400 hover:border-accent/40 [transform:translateZ(0)] will-change-transform">
-          <div class="card-scanline"></div>
-          <span class="card-number">02</span>
-          <img src="projetos/energiaenxuta.png" alt="Energia Enxuta"
-            class="w-full h-full object-cover block grayscale-[80%] brightness-60 transition-[filter,transform] duration-500 group-hover:grayscale-0 group-hover:brightness-[0.85] group-hover:scale-105 will-change-[filter,transform] [transform:translateZ(0)]">
-          <div
-            class="absolute inset-0 p-6 flex flex-col justify-end bg-gradient-to-t from-bg/95 via-bg/40 to-transparent translate-y-5 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 z-[3]">
-            <p class="font-mono text-[9px] tracking-[0.25em] text-accent mb-2">SAAS / WEB</p>
-            <p class="font-mono text-lg font-bold mb-1">Energia_Enxuta</p>
-            <div class="flex gap-2 mb-2 flex-wrap">
-              <span
-                class="font-mono text-[8px] tracking-[0.1em] text-fg/40 border border-fg/10 px-2 py-0.5">NEXTJS</span>
-              <span
-                class="font-mono text-[8px] tracking-[0.1em] text-fg/40 border border-fg/10 px-2 py-0.5">TAILWIND</span>
-            </div>
-            <p class="text-xs text-fg/60 leading-relaxed mb-3">Plataforma de gestão de eficiência energética focada na
-              conversão B2B.</p>
-            <span
-              class="inline-flex items-center gap-1.5 font-mono text-[10px] tracking-[0.12em] text-accent font-bold">VER
-              PROJETO ↗</span>
-          </div>
-          <a href="https://energiaenxuta.com/" target="_blank" rel="noopener noreferrer"
-            class="absolute inset-0 z-10"></a>
-        </div>
-
-        <!-- Card 3 -->
-        <div
-          class="project-card shrink-0 w-[85vw] sm:w-[50vw] md:w-[35vw] lg:w-[32vw] snap-center relative overflow-hidden bg-dim aspect-[16/10] group cursor-none border border-dim transition-all duration-400 hover:border-accent/40 [transform:translateZ(0)] will-change-transform">
-          <div class="card-scanline"></div>
-          <span class="card-number">03</span>
-          <img src="projetos/betterday.png" alt="Betterday"
-            class="w-full h-full object-cover block bg-[#0d0d0d] grayscale-[80%] brightness-60 transition-[filter,transform] duration-500 group-hover:grayscale-0 group-hover:brightness-[0.85] group-hover:scale-105 will-change-[filter,transform] [transform:translateZ(0)]">
-          <div
-            class="absolute inset-0 p-6 flex flex-col justify-end bg-gradient-to-t from-bg/95 via-bg/40 to-transparent translate-y-5 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 z-[3]">
-            <p class="font-mono text-[9px] tracking-[0.25em] text-accent mb-2">MOBILE / ANDROID</p>
-            <p class="font-mono text-lg font-bold mb-1">Betterday</p>
-            <div class="flex gap-2 mb-2 flex-wrap">
-              <span
-                class="font-mono text-[8px] tracking-[0.1em] text-fg/40 border border-fg/10 px-2 py-0.5">FLUTTER</span>
-              <span class="font-mono text-[8px] tracking-[0.1em] text-fg/40 border border-fg/10 px-2 py-0.5">DART</span>
-              <span
-                class="font-mono text-[8px] tracking-[0.1em] text-fg/40 border border-fg/10 px-2 py-0.5">FIREBASE</span>
-            </div>
-            <p class="text-xs text-fg/60 leading-relaxed mb-3">App de rastreamento de rotinas desenhado para máxima
-              retenção de usuários.</p>
-            <span
-              class="inline-flex items-center gap-1.5 font-mono text-[10px] tracking-[0.12em] text-accent font-bold">VER
-              PROJETO ↗</span>
-          </div>
-          <a href="https://italobandeira.github.io/betterday/index.html" target="_blank" rel="noopener noreferrer"
-            class="absolute inset-0 z-10"></a>
-        </div>
-
-        <!-- Card 4 -->
-        <div
-          class="project-card shrink-0 w-[85vw] sm:w-[50vw] md:w-[35vw] lg:w-[32vw] snap-center relative overflow-hidden bg-dim aspect-[16/10] group cursor-none border border-dim transition-all duration-400 hover:border-accent/40 [transform:translateZ(0)] will-change-transform">
-          <div class="card-scanline"></div>
-          <span class="card-number">04</span>
-          <img src="projetos/portfolioMinimalista.PNG" alt="Portfólio Minimalista"
-            class="w-full h-full object-cover block grayscale-[80%] brightness-60 transition-[filter,transform] duration-500 group-hover:grayscale-0 group-hover:brightness-[0.85] group-hover:scale-105 will-change-[filter,transform] [transform:translateZ(0)]">
-          <div
-            class="absolute inset-0 p-6 flex flex-col justify-end bg-gradient-to-t from-bg/95 via-bg/40 to-transparent translate-y-5 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 z-[3]">
-            <p class="font-mono text-[9px] tracking-[0.25em] text-accent mb-2">PORTFÓLIO WEB</p>
-            <p class="font-mono text-lg font-bold mb-1">Minimal_Brutalist</p>
-            <div class="flex gap-2 mb-2 flex-wrap">
-              <span class="font-mono text-[8px] tracking-[0.1em] text-fg/40 border border-fg/10 px-2 py-0.5">HTML</span>
-              <span
-                class="font-mono text-[8px] tracking-[0.1em] text-fg/40 border border-fg/10 px-2 py-0.5">TAILWIND</span>
-              <span class="font-mono text-[8px] tracking-[0.1em] text-fg/40 border border-fg/10 px-2 py-0.5">GSAP</span>
-            </div>
-            <p class="text-xs text-fg/60 leading-relaxed mb-3">Template ultra-rápido de alto impacto visual focado em
-              conversão e performance extrema.</p>
-            <span
-              class="inline-flex items-center gap-1.5 font-mono text-[10px] tracking-[0.12em] text-accent font-bold">VER
-              PROJETO ↗</span>
-          </div>
-          <a href="portfolio-minimalista.html" target="_blank" rel="noopener noreferrer"
-            class="absolute inset-0 z-10"></a>
-        </div>
-
-      </div>
-
-      <!-- Arrow Controls placed on edges -->
-      <div class="absolute inset-y-0 left-4 md:left-8 flex items-center z-50 pointer-events-none -mt-4 md:-mt-8">
-        <button id="btn-prev-proj"
-          class="pointer-events-auto w-12 h-12 md:w-16 md:h-16 flex items-center justify-center border border-fg/20 bg-bg/80 text-fg hover:text-bg hover:bg-accent hover:border-accent transition-all duration-300 cursor-none group backdrop-blur-md rounded-sm opacity-0 -translate-x-4 group-hover/carousel:opacity-100 group-hover/carousel:translate-x-0">
-          <span class="font-mono text-sm group-hover:-translate-x-1 transition-transform">←</span>
-        </button>
-      </div>
-
-      <div class="absolute inset-y-0 right-4 md:right-8 flex items-center z-50 pointer-events-none -mt-4 md:-mt-8">
-        <button id="btn-next-proj"
-          class="pointer-events-auto w-12 h-12 md:w-16 md:h-16 flex items-center justify-center border border-fg/20 bg-bg/80 text-fg hover:text-bg hover:bg-accent hover:border-accent transition-all duration-300 cursor-none group backdrop-blur-md rounded-sm opacity-0 translate-x-4 group-hover/carousel:opacity-100 group-hover/carousel:translate-x-0">
-          <span class="font-mono text-sm group-hover:translate-x-1 transition-transform">→</span>
-        </button>
-      </div>
-
-    </div>
-  </section>
-
   <!-- About Section -->
   <section id="about-section"
     class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center border-t border-dim px-6 py-20 md:px-12 md:py-32 reveal-section">
+
     <div>
-      <p class="font-mono text-[9px] tracking-[0.3em] text-accent mb-12">// 003 — SOBRE_</p>
+      <p class="font-mono text-[9px] tracking-[0.3em] text-accent mb-12">// 002 — SOBRE_</p>
       <h2 class="font-mono text-[clamp(36px,4vw,58px)] font-bold leading-[1.05] tracking-[-0.02em] mb-8">Design
         Orientado a<br>Conversão.</h2>
       <p class="text-[15px] leading-[1.8] text-fg/55 mb-5">
@@ -631,14 +492,14 @@
       </div>
     </div>
 
-    <div class="photo-wrapper relative w-full max-w-[400px] mx-auto mt-4 group">
+    <div class="photo-wrapper relative w-full max-w-[400px] mx-auto mt-4 group z-10 overflow-visible">
       <!-- Dots pattern background -->
       <div class="dots-pattern absolute -inset-4 z-0 opacity-40 transition-opacity duration-500 group-hover:opacity-70">
       </div>
 
       <!-- Photo container -->
       <div
-        class="relative overflow-hidden aspect-[3/4] border border-accent/20 shadow-[0_0_25px_rgba(232,255,71,0.06)] transition-all duration-500 group-hover:border-accent/50 group-hover:shadow-[0_0_40px_rgba(232,255,71,0.12)] z-[1]">
+        class="photo-container relative overflow-hidden aspect-[3/4] border border-accent/20 shadow-[0_0_25px_rgba(232,255,71,0.06)] transition-[border-color,shadow] duration-500 group-hover:border-accent/50 group-hover:shadow-[0_0_40px_rgba(232,255,71,0.12)] z-10" style="will-change: transform;">
         <!-- Corner decorations -->
         <div class="corner-deco corner-tl"></div>
         <div class="corner-deco corner-tr"></div>
@@ -672,7 +533,7 @@
   <!-- Contact Section -->
   <section id="contact-section"
     class="relative z-10 text-center border-t border-dim px-6 py-20 md:px-12 md:py-40 reveal-section">
-    <p class="font-mono text-[9px] tracking-[0.3em] text-accent mb-6 text-center">// 004 — CONTATO_</p>
+    <p class="font-mono text-[9px] tracking-[0.3em] text-accent mb-6 text-center">// 003 — CONTATO_</p>
     <h2 class="font-mono text-[clamp(40px,7vw,100px)] font-bold tracking-[-0.02em] leading-[0.95] mb-12">
       Pronto para<br>Escalar suas<br><span class="text-accent">Vendas?</span>
     </h2>
@@ -696,9 +557,15 @@
   <footer
     class="relative z-10 px-6 py-6 md:px-12 md:py-6 border-t border-dim flex flex-col md:flex-row justify-between items-center gap-3 text-center md:text-left font-mono text-[9px] tracking-[0.2em] text-fg/20">
     <div class="font-mono text-[10px] uppercase">
-      © 2026_ITALO_BANDEIRA // ESPECIALISTA_EM_LANDING_PAGES // ALTA_CONVERSAO
+      <span
+        class="text-fg/60 tracking-[0.15em] whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60 after:ml-2">©
+        2026_ITALO_BANDEIRA</span> <span
+        class="text-fg/60 tracking-[0.15em] whitespace-nowrap after:content-['//'] after:text-accent after:opacity-60 after:ml-2">ESPECIALISTA_EM_LANDING_PAGES</span>
+      <span class="text-fg/60 tracking-[0.15em] whitespace-nowrap">ALTA_CONVERSAO</span>
     </div>
-    <a href="#" class="text-inherit no-underline">VOLTAR AO TOPO ↑</a>
+    <a href="#"
+      class="text-fg/60 hover:text-accent transition-colors duration-200 no-underline font-mono text-[9px] tracking-[0.2em]">VOLTAR
+      AO TOPO ↑</a>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -764,27 +631,32 @@
       }, { threshold: 0.2 });
 
       const projSection = document.getElementById('projects-section');
-      if (projSection) cardsObserver.observe(projSection);
-    }
+      // 3D Tilt for About Photo
+      const photoWrapper = document.querySelector('.photo-wrapper');
+      if (photoWrapper) {
+        photoWrapper.addEventListener('mousemove', (e) => {
+          const rect = photoWrapper.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
 
-    // ─── Carousel Navigation ──────────────────────────────
-    const carouselP = document.getElementById('projects-carousel');
-    const btnNext = document.getElementById('btn-next-proj');
-    const btnPrev = document.getElementById('btn-prev-proj');
+          gsap.to(photoWrapper.querySelector('.photo-container'), {
+            rotateY: x * 15, // Reduced slightly for elegance
+            rotateX: -y * 15,
+            duration: 0.8,
+            ease: 'power3.out', // Smoother easing
+            transformPerspective: 1200,
+          });
+        });
 
-    if (btnNext && btnPrev && carouselP) {
-      btnNext.addEventListener('click', () => {
-        // Scroll exactly one card width + gap
-        const cardWidth = carouselP.querySelector('.project-card').offsetWidth;
-        const gap = window.innerWidth >= 768 ? 32 : 16; // md:gap-8 (32px) or gap-4 (16px)
-        carouselP.scrollBy({ left: cardWidth + gap, behavior: 'smooth' });
-      });
-
-      btnPrev.addEventListener('click', () => {
-        const cardWidth = carouselP.querySelector('.project-card').offsetWidth;
-        const gap = window.innerWidth >= 768 ? 32 : 16;
-        carouselP.scrollBy({ left: -(cardWidth + gap), behavior: 'smooth' });
-      });
+        photoWrapper.addEventListener('mouseleave', () => {
+          gsap.to(photoWrapper.querySelector('.photo-container'), {
+            rotateY: 0,
+            rotateX: 0,
+            duration: 1.2,
+            ease: 'elastic.out(1, 0.6)'
+          });
+        });
+      }
     }
 
     // ─── Custom Cursor ────────────────────────────────────
@@ -1018,8 +890,10 @@
       particleMat.uniforms.uMouse.value.set(mouse.x, mouse.y);
       gridMat.uniforms.uTime.value = t;
 
-      // Scroll parallax on camera
-      camera.position.y = -scrollY * 0.02;
+      // Scroll parallax on camera (proportional to page height)
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = scrollY / (maxScroll || 1);
+      camera.position.y = -scrollPercent * 55; // 60 is the approximate range of the scene content
 
       // Mouse parallax on camera
       camera.position.x += (mouse.x * 3 - camera.position.x) * 0.04;
